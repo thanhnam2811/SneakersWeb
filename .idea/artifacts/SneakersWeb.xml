@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" build-on-make="true" name="SneakersWeb">
+    <output-path>$PROJECT_DIR$/out/artifacts/SneakersWeb</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="SneakersWeb" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="javax.servlet.jsp.jstl-1.2.5" />
+          <element id="library" level="project" name="javax.servlet.jsp.jstl-api-1.2.2" />
+          <element id="library" level="project" name="mssql-jdbc-9.4.0.jre16" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="SneakersWeb/web/Web" />
+    </root>
+  </artifact>
+</component>
