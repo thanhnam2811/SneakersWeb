@@ -97,6 +97,7 @@ public class cart extends HttpServlet {
         try {
             idProduct = Integer.parseInt(request.getParameter("idProduct"));
             quantity = Integer.parseInt(request.getParameter("new_quantity"));
+            System.out.println("Update product id=" + idProduct + " quantity=" + quantity);
             DBCartUtil.updateCart_byUsername_idProduct(conn, loginedUser.getUsername(), idProduct, quantity);
 
             List<Cart> updatedCart = DBCartUtil.getCart_byUsername(conn, loginedUser.getUsername());
@@ -134,6 +135,7 @@ public class cart extends HttpServlet {
             quantity = Integer.parseInt(request.getParameter("quantity"));
             idProduct = Integer.parseInt(request.getParameter("idProduct"));
             product = DBProductUtil.getProduct_byId(conn, idProduct);
+            System.out.println("Add product id=" + idProduct + " quantity=" + quantity);
 
             if (cartList.isEmpty()) {
                 assert product != null;

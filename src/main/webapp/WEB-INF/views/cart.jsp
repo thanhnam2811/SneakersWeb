@@ -99,13 +99,13 @@
                     <c:set var="total" value="0"></c:set>
                     <c:forEach items="${sessionScope.userCart}" var="c">
                         <c:set var="total" value="${total+c.cost}"></c:set>
-                        <form action="cart?type=Update" method="get">
+                        <form action="cart" method="get">
                             <tr>
                                 <td>
                                     <div class="media">
                                         <div class="d-flex">
                                             <a href="${pageContext.request.contextPath}/product-detail?id=${c.product.id}">
-                                                <img src="${c.getProduct().image}" alt="${c.product.name}"
+                                                <img src="${c.product.image}" alt="${c.product.name}"
                                                      width="200px"
                                                      height="200px">
                                             </a>
@@ -131,7 +131,11 @@
                                                        var sst = result.value;
                                                        var btn = document.getElementById('btn-save-${c.product.id}');
                                                        var message = document.getElementById('errorMessage');
-                                                       if( !isNaN( sst ) &amp;&amp; sst <= ${c.product.quantity} )
+                                                       if (sst > ${c.product.quantity}) {
+                                                           alert('Must be lower than available quantity: ${c.product.quantity}');
+                                                           result.value = ${c.quantity};
+                                                       }
+                                                       if( !isNaN( sst ) &amp;&amp; sst < ${c.product.quantity} )
                                                        result.value;
                                                        if ( result.value != ${c.quantity} && btn.classList.contains('disable')) {
                                                        document.getElementById('btn-save-${c.product.id}').classList.remove('disable');
@@ -148,7 +152,7 @@
                                                         var sst = result.value;
                                                         var btn = document.getElementById('btn-save-${c.product.id}');
                                                         var message = document.getElementById('errorMessage');
-                                                        if( !isNaN( sst ) &amp;&amp; sst <= ${c.product.quantity} )
+                                                        if( !isNaN( sst ) &amp;&amp; sst < ${c.product.quantity} )
                                                         result.value++;
                                                         if ( result.value != ${c.quantity} && btn.classList.contains('disable')) {
                                                         document.getElementById('btn-save-${c.product.id}').classList.remove('disable');
@@ -183,6 +187,7 @@
                                     </div>
                                 </td>
                                 <td>
+                                    <input type="hidden" name="type" value="Update">
                                     <input type="hidden" name="idProduct" value="${c.product.id}">
                                     <button type="submit" class="genric-btn success disable" style="width: 100px"
                                             id="btn-save-${c.product.id}">Save
