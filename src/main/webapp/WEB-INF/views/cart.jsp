@@ -42,20 +42,6 @@
     <link rel="stylesheet" href="css/nouislider.min.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
-
-    <style>
-        /* Chrome, Safari, Edge, Opera */
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        /* Firefox */
-        input[type=number] {
-            -moz-appearance: textfield;
-        }
-    </style>
 </head>
 
 <body>
@@ -84,6 +70,7 @@
 <section class="cart_area">
     <div class="container">
         <div class="cart_inner">
+            <c:if test="${sessionScope.userCart.size() > 0}">
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -233,14 +220,17 @@
 
                         </td>
                         <td>
-                            <form action="check-out" method="post">
-                                <button class="primary-btn" type="submit">Checkout</button>
-                            </form>
+                                <a class="primary-btn" href="${pageContext.request.contextPath}/check-out">Checkout</a>
                         </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
+            </c:if>
+
+            <c:if test="${sessionScope.userCart.size()==0}">
+            <h2 style="text-align: center">Your cart is EMPTY! :((</h2>
+            </c:if>
         </div>
     </div>
 </section>

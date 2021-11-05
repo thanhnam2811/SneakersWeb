@@ -82,7 +82,7 @@
         <div class="billing_details">
             <div class="row">
                 <div class="col-lg-12">
-                    <form class="row contact_form" action="#" method="post">
+                    <form class="row contact_form" action="check-out" method="post">
                         <div class="order_box">
                             <h2>Your Order</h2>
                             <ul class="list">
