@@ -4,24 +4,16 @@ import java.util.List;
 
 public class Brand {
     private int id;
-    private String name, email;
+    private String name, email, logo;
 
     public Brand() {
     }
 
-    public Brand(int id, String name, String email) {
+    public Brand(int id, String name, String email, String logo) {
         this.id = id;
         this.name = name;
         this.email = email;
-    }
-
-    public int getNumProduct(List<Product> listP) {
-        int count = 0;
-        for (Product p : listP) {
-            if (p.getIdBrand() == this.id)
-                count++;
-        }
-        return count;
+        this.logo = logo;
     }
 
     public static String getNameBrand_ById(List<Brand> listB, int id) {
@@ -63,5 +55,13 @@ public class Brand {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 }

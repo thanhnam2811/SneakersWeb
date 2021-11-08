@@ -22,8 +22,9 @@ public class DBBrandUtil {
             int id = rs.getInt(1);
             String name = rs.getString(2);
             String email = rs.getString(3);
+            String logo = rs.getString(4);
 
-            Brand b = new Brand(id, name, email);
+            Brand b = new Brand(id, name, email, logo);
             listB.add(b);
         }
         return listB;
