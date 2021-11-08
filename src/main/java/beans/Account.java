@@ -1,12 +1,6 @@
 package beans;
 
-import utils.DBAccountUitl;
-import utils.MyUtils;
-
-import javax.servlet.http.HttpServletRequest;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.SQLException;
 
 public class Account {
     int id;

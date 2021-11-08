@@ -27,7 +27,7 @@ public class DBOrderUtil {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Connection conn = ConnectionUtils.getConnection();
-        Account user = DBAccountUitl.findAccount(conn, "nam");
+        Account user = DBAccountUtil.findAccount(conn, "nam");
         int idOrder_inserted = insertOrder(conn, user);
         System.out.println(idOrder_inserted);
     }

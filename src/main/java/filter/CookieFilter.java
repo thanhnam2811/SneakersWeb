@@ -2,7 +2,7 @@ package filter;
 
 import beans.Account;
 import beans.Cart;
-import utils.DBAccountUitl;
+import utils.DBAccountUtil;
 import utils.DBCartUtil;
 import utils.MyUtils;
 
@@ -59,7 +59,7 @@ public class CookieFilter implements Filter {
 		if (checked == null && conn != null) {
 			String userName = MyUtils.getUserNameInCookie(req);
 			try {
-				Account user = DBAccountUitl.findAccount(conn, userName);
+				Account user = DBAccountUtil.findAccount(conn, userName);
 				List<Cart> cart = DBCartUtil.getCart_byUsername(conn, userName);
 				MyUtils.storeLoginedUser(session, user);
 				MyUtils.storeUserCart(session, cart);

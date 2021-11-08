@@ -2,7 +2,7 @@ package servlets;
 
 import beans.Account;
 import beans.Cart;
-import utils.DBAccountUitl;
+import utils.DBAccountUtil;
 import utils.DBCartUtil;
 import utils.MyUtils;
 
@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +55,7 @@ public class loginregister extends HttpServlet {
             Connection conn = MyUtils.getStoredConnection(request);
 
             // Check username
-            if (DBAccountUitl.findAccount(conn, _username) != null)
+            if (DBAccountUtil.findAccount(conn, _username) != null)
                 throw new Exception("'" + _username + "' already taken, please choose another!");
 
             // Check valid Date
@@ -67,7 +66,7 @@ public class loginregister extends HttpServlet {
             }
 
             // Create new account
-            DBAccountUitl.createAccount(conn, _username, _password, _fullname, _avatar, _phoneNumber, _address, _sex, _dateOfBirth);
+            DBAccountUtil.createAccount(conn, _username, _password, _fullname, _avatar, _phoneNumber, _address, _sex, _dateOfBirth);
         } catch (Exception e) {
             hasError = true;
             message = e.getMessage();
@@ -98,7 +97,7 @@ public class loginregister extends HttpServlet {
             Connection conn = MyUtils.getStoredConnection(request);
             try {
                 // Tìm user trong DB.
-                user = DBAccountUitl.findAccount(conn, username, password);
+                user = DBAccountUtil.findAccount(conn, username, password);
                 if (user == null) {
                     message = "username or password invalid";
                     throw new Exception(message);

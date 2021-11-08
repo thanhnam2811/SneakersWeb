@@ -1,7 +1,7 @@
 package servlets;
 
 import beans.Account;
-import utils.DBAccountUitl;
+import utils.DBAccountUtil;
 import utils.MyUtils;
 
 import javax.servlet.ServletException;
@@ -68,7 +68,7 @@ public class editaccount extends HttpServlet {
 
         try {
             Connection conn = MyUtils.getStoredConnection(request);
-            boolean isSuccess = DBAccountUitl.changePassword(conn, username, old_password, new_password);
+            boolean isSuccess = DBAccountUtil.changePassword(conn, username, old_password, new_password);
             if (!isSuccess) {
                 hasError = true;
                 message = "Incorrect password!";
@@ -114,10 +114,10 @@ public class editaccount extends HttpServlet {
 
         try {
             Connection conn = MyUtils.getStoredConnection(request);
-            DBAccountUitl.editAccount(conn, _username, _fullname, _avatar, _phoneNumber, _address, _sex, _dateOfBirth);
+            DBAccountUtil.editAccount(conn, _username, _fullname, _avatar, _phoneNumber, _address, _sex, _dateOfBirth);
 
             // Cập nhật user
-            user = DBAccountUitl.findAccount(conn, user.getUsername());
+            user = DBAccountUtil.findAccount(conn, user.getUsername());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             message = throwables.getMessage();

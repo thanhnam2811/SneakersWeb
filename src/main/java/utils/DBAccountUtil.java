@@ -5,7 +5,7 @@ import conn.ConnectionUtils;
 
 import java.sql.*;
 
-public class DBAccountUitl {
+public class DBAccountUtil {
     // findAccount
     public static Account findAccount(Connection conn, String username, String password) throws SQLException {
         PreparedStatement pstm = conn.prepareCall("{call findAccount(?, ?)}");
