@@ -2,8 +2,8 @@
 go
 
 -- Brand (id, name, email)
-insert into Brand(name, email) values('Adidas', 'adidas@gmail.com')
-insert into Brand(name, email) values('Nike', 'nike@gmail.com')
+insert into Brand(name, email, logo) values('Adidas', 'adidas@gmail.com', 'img/brand/adidas.png')
+insert into Brand(name, email, logo) values('Nike', 'nike@gmail.com', 'img/brand/nike.png')
 
 -- Product (id, name, idBrand, image, describe, quantity, cost, saleDate)
 SET IDENTITY_INSERT [dbo].[Product] ON 

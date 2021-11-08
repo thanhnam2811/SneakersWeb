@@ -11,7 +11,8 @@ go
 create table Brand (
 	id int primary key identity, 
 	name nvarchar(100), 
-	email varchar(200)
+	email varchar(200),
+	logo nvarchar(MAX) null default 'img/brand/logo.png'
 )
 
 -- Product (id, name, idBrand, image, describe, quantity, cost, saleDate)

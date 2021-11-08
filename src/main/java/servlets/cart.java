@@ -119,6 +119,10 @@ public class cart extends HttpServlet {
     private void AddToCart(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
         Account loginedUser = MyUtils.getLoginedUser(session);
+        if (loginedUser == null) {
+            response.sendRedirect(request.getContextPath() + "/login-register");
+            return;
+        }
 
         Connection conn = MyUtils.getStoredConnection(request);
 

@@ -125,8 +125,7 @@
                     <h3>
                         <b>${login_message}</b>
                     </h3>
-                    <form class="row login_form" action="login-register?type=login" method="post"
-                          novalidate="novalidate">
+                    <form class="row login_form" action="login-register?type=login" method="post">
                         <div class="col-md-12 form-group">
                             <input type="text" class="form-control" name="username" placeholder="Username"
                                    value="${username}"
@@ -156,7 +155,7 @@
                     <h3>Register new Account</h3>
                     <h3><b>${register_message}</b></h3>
                     <form class="row login_form" action="login-register?type=register" method="post"
-                          novalidate="novalidate" name="formRegister" onsubmit="return checkInput()">
+					name="formRegister" onsubmit="return checkInput()">
                         <div class="col-md-12 form-group">
                             <input type="text" class="form-control" name="_username" placeholder="Username" required
                                    id="_username"

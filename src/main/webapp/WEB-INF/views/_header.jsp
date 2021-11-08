@@ -7,21 +7,21 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="utils.DBBrandUtil" %>
 
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
 
-    <style>
-        /* Chrome, Safari, Edge, Opera */
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        /* Firefox */
-        input[type=number] {
-            -moz-appearance: textfield;
-        }
-    </style>
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
 
 <!-- Start Header Area -->
 <header class="header_area sticky-header">
@@ -29,15 +29,15 @@
         <nav class="navbar navbar-expand-lg navbar-light main_box">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <a class="navbar-brand logo_h" href="${pageContext.request.contextPath}/home"><img src="img/logo.png"
-                                                                                                   alt=""></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+                <a class="navbar-brand logo_h" href="${pageContext.request.contextPath}/home">
+                    <img src="img/logo.png" alt="home"></a>
+<%--                <button class="navbar-toggler" type="button" data-toggle="collapse"--%>
+<%--                        data-target="#navbarSupportedContent"--%>
+<%--                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">--%>
+<%--                    <span class="icon-bar"></span>--%>
+<%--                    <span class="icon-bar"></span>--%>
+<%--                    <span class="icon-bar"></span>--%>
+<%--                </button>--%>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto">
@@ -49,7 +49,8 @@
                         </li>
                         <c:if test="${sessionScope.loginedUser == null}">
                             <li class="nav-item ${pageName == "login-register" ? "active" : ""}">
-                                <a class="nav-link" href="${pageContext.request.contextPath}/login-register">Login or Register</a>
+                                <a class="nav-link" href="${pageContext.request.contextPath}/login-register">Login or
+                                    Register</a>
                             </li>
                         </c:if>
                         <c:if test="${sessionScope.loginedUser != null}">

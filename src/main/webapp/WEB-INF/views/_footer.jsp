@@ -31,12 +31,11 @@
 						<h6>About Us</h6>
 						<p>
 							Website này là project trong quá trình học môn Lập trình Web. <br>
-							Front-end: Template được tải trên <a
+							Front-end: Template có nguồn: <a
 								href="https://colorlib.com/wp/template/karma/">Colorlib</a>. <br>
 							Back-end: Thiết kế bằng JSP/Servlet bởi: <br>
-							<a href="https://www.facebook.com/cao.hoaitan/">Cao Hoài Tấn</a>: caohoaitan@gmail.com <br>
-							<a href="https://www.facebook.com/thanhnam.thai2811/">Thái Thành Nam</a>:
-							thanhnam.thai01@gmail.com
+							&ensp; - <a href="https://www.facebook.com/cao.hoaitan/">Cao Hoài Tấn</a><br>
+							&ensp; - <a href="https://www.facebook.com/thanhnam.thai2811/">Thái Thành Nam</a>
 						</p>
 					</div>
 				</div>
