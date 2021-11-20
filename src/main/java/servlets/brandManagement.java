@@ -10,6 +10,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
@@ -37,6 +38,39 @@ public class brandManagement extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String type = request.getParameter("type");
+        if (type.equals("forwardNew"))
+            forwardNewBrand(request, response);
+        else if (type.equals("delete"))
+            DeleteBrand(request, response);
+        else if(type.equals("add"))
+            addBrand(request,response);
+    }
+
+    private void forwardNewBrand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/WEB-INF/views/new-brand.jsp").forward(request, response);
+
+    }
+    private void DeleteBrand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+    }
+    private void addBrand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String name = request.getParameter("brandName");
+        String image = request.getParameter("brandImage");
+        String email =  request.getParameter("brandEmail");
+
+        Brand brand = new Brand(name,email,image);
+
+
+        try {
+            Connection conn = MyUtils.getStoredConnection(request);
+            DBBrandUtil.insertBrand(conn,brand);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        new brandManagement().doGet(request,response);
 
     }
 }

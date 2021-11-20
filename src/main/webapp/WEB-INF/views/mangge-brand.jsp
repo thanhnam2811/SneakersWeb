@@ -65,7 +65,9 @@
 <section class="cart_area">
     <div class="container">
         <div class="cart_inner">
-            <a class="primary-btn" style="color: #FFF;">Add new brand</a>
+            <form action="brandManagement?type=forwardNew" method="post">
+                <button class="primary-btn" style="color: #FFF;" type="submit">New Brand</button>
+            </form>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -92,9 +94,13 @@
                             <h5>${o.email}</h5>
                         </td>
                         <td>
-                            <a href="#" class="genric-btn rounded success" style="width: 100px;">Edit</a>
+                            <form action="brandManagement?type=edit" method="post">
+                                <button class="genric-btn rounded success" style="width: 100px;" type="submit">Edit</button>
+                            </form>
                             <div style="height: 50px;"></div>
-                            <a href="#" class="genric-btn rounded danger" style="width: 100px;">Delete</a>
+                            <form action="brandManagement?type=delete" method="post">
+                                <button class="genric-btn rounded success" style="width: 100px; background-color: #990000" type="submit">Delete</button>
+                            </form>
                         </td>
                     </tr>
                     </c:forEach>

@@ -30,6 +30,16 @@ public class DBBrandUtil {
         return listB;
     }
 
+    public static void insertBrand(Connection conn,Brand brand) throws SQLException{
+        PreparedStatement pstm = conn.prepareCall("insert into Brand(name, email, logo) " +
+                "values(?, ?, ?)");
+        pstm.setString(1, brand.getName());
+        pstm.setString(2, brand.getEmail());
+        pstm.setString(3, brand.getLogo());
+        pstm.execute();
+
+    }
+
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Connection conn = ConnectionUtils.getConnection();
         List<Brand> listB = getAllBrand(conn);

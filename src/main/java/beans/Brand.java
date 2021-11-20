@@ -9,6 +9,11 @@ public class Brand {
     public Brand() {
     }
 
+    public Brand( String name, String email, String logo) {
+        this.name = name;
+        this.email = email;
+        this.logo = logo;
+    }
     public Brand(int id, String name, String email, String logo) {
         this.id = id;
         this.name = name;

@@ -66,7 +66,7 @@
         <div class="col-lg-6">
             <div class="login_form_inner">
                 <h3>New Brand</h3>
-                <form class="row login_form" action="contact_process.php" method="post" id="contactForm">
+                <form class="row login_form" action="brandManagement?type=add" method="post" id="contactForm">
                     <div class="col-md-12 form-group">
                         <input type="text" class="form-control" id="brandName" name="brandName" placeholder="Brand Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Brand Name'">
                     </div>
