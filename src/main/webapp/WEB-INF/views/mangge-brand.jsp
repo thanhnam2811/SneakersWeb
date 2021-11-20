@@ -5,7 +5,10 @@
   Time: 9:47 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="beans.Brand" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -150,19 +153,20 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${brandList}" var="o">
                     <tr>
                         <td>
                             <div class="media">
                                 <div class="d-flex">
-                                    <img src="img/brand/adidas.png" alt="">
+                                    <img src="${o.logo}" alt="">
                                 </div>
                                 <div class="media-body">
-                                    <p>Adidas</p>
+                                    <p>${o.name}</p>
                                 </div>
                             </div>
                         </td>
                         <td>
-                            <h5>adidas@gmail.com</h5>
+                            <h5>${o.email}</h5>
                         </td>
                         <td>
                             <a href="#" class="genric-btn rounded success" style="width: 100px;">Edit</a>
@@ -170,6 +174,7 @@
                             <a href="#" class="genric-btn rounded danger" style="width: 100px;">Delete</a>
                         </td>
                     </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>
