@@ -10,7 +10,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html lang="zxx" class="no-js">
+<html lang="vi" class="no-js">
 
 <head>
     <!-- Mobile Specific Meta -->

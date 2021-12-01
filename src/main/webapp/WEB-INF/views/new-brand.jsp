@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="zxx" class="no-js">
+<html lang="vi" class="no-js">
 
 <head>
     <!-- Mobile Specific Meta -->

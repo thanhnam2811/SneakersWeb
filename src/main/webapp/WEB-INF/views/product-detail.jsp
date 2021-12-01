@@ -185,8 +185,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
 											<textarea class="form-control" name="new_comment" id="comment" rows="1"
-                                                      placeholder="Comment">
-                                            </textarea>
+                                                      placeholder="Comment"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12 text-right">

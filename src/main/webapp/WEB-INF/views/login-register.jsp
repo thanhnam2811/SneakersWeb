@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="beans.Account" %>
 <!DOCTYPE html>
-<html lang="zxx" class="no-js">
+<html lang="vi" class="no-js">
 
 <head>
     <!-- Mobile Specific Meta -->

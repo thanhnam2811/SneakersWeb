@@ -9,7 +9,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="vi" class="no-js">
 
 <head>
     <!-- Mobile Specific Meta -->
@@ -73,7 +73,7 @@
                         </div>
                     </div>
                     <!-- single-slide -->
-                    <div class="row single-slide">
+                    <div class="row single-slide align-items-center d-flex">
                         <div class="col-lg-5">
                             <div class="banner-content">
                                 <h2>Selection Adidas!<br>${pAdidas.name}</h2>

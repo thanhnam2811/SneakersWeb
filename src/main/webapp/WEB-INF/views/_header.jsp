@@ -39,7 +39,6 @@
 <%--                </button>--%>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                <c:if test="${sessionScope.loginedUser.admin == false}">
                     <ul class="nav navbar-nav menu_nav ml-auto">
                         <li class="nav-item ${pageName == "home" ? "active" : ""}">
                             <a class="nav-link" href="${pageContext.request.contextPath}/home">Home</a>
@@ -59,54 +58,9 @@
                             </li>
                         </c:if>
                     </ul>
-                </c:if>
-
-<%--Header for admin--%>
-            <c:if test="${sessionScope.loginedUser.admin == true}">
-                    <ul class="nav navbar-nav menu_nav ml-auto">
-                        <li class="nav-item ${pageName == "home" ? "active" : ""}">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/home">Home</a>
-                        </li>
-                        <li class="nav-item submenu dropdown active">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item ${pageName == "brandManagement" ? "active" : ""}">
-                                    <a class="nav-link" href="${pageContext.request.contextPath}/brandManagement">Brand Management</a>
-                                </li>
-
-                                <li class="nav-item ${pageName == "userManagement" ? "active" : ""}">
-                                    <a class="nav-link" href="${pageContext.request.contextPath}/userManagement">User Management</a>
-                                </li>
-
-                                <li class="nav-item ${pageName == "productManagement" ? "active" : ""}">
-                                    <a class="nav-link" href="${pageContext.request.contextPath}/productManagement">Product Management</a>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li class="nav-item submenu dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                                <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item submenu dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                                <li class="nav-item"><a class="nav-link" href="tracking.html">Tracking</a></li>
-                                <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                    </ul>
-            </c:if>
-
 
                     <ul class="nav navbar-nav navbar-right">
-                        <c:if test="${sessionScope.loginedUser.admin == false}">
+                        <c:if test="${sessionScope.loginedUser != null}">
                             <li class="nav-item">
                                 <a href="${pageContext.request.contextPath}/cart" class="cart">
                                     <span class="ti-bag">
@@ -116,14 +70,15 @@
                             </li>
                         </c:if>
 
-                        <li class="nav-item">
-                            <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-                        </li>
+<%--                        <li class="nav-item">--%>
+<%--                            <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>--%>
+<%--                        </li>--%>
                     </ul>
                 </div>
             </div>
         </nav>
     </div>
+    <!--
     <div class="search_input" id="search_input_box">
         <div class="container">
             <form class="d-flex justify-content-between">
@@ -133,5 +88,6 @@
             </form>
         </div>
     </div>
+    -->
 </header>
 <!-- End Header Area -->
