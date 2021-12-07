@@ -74,7 +74,6 @@ public class login_register extends HttpServlet {
             doGet(request, response);
         } else
             response.sendRedirect(request.getContextPath() + "/login-register");
-
     }
 
     private void Login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

@@ -3,12 +3,60 @@ package utils;
 import beans.Account;
 import conn.ConnectionUtils;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DBOrderUtil {
+    // Get annual total revenue
+    public static double getTotalRevenueAnnual(Connection conn) throws SQLException {
+        Statement stm = conn.createStatement();
+
+        ResultSet result = stm.executeQuery("select sum(cost) from [Order] " +
+                "where year(purchaseDate) = year(getdate())");
+
+        double totalRevenue = 0;
+
+        if(result.next()) {
+            totalRevenue = result.getDouble(1);
+        }
+
+        return totalRevenue;
+    }
+
+    // Get monthly total revenue
+    public static double getTotalRevenueMonthly(Connection conn) throws SQLException {
+        Statement stm = conn.createStatement();
+
+        ResultSet result = stm.executeQuery("select sum(cost) from [Order] " +
+                "where year(purchaseDate) = year(getdate()) and month(purchaseDate) = month(getdate())");
+
+        double totalRevenue = 0;
+
+        if(result.next()) {
+            totalRevenue = result.getDouble(1);
+        }
+
+        return totalRevenue;
+    }
+
+    // Get monthly revenue
+    public static double[] getMonthlyRevenue(Connection conn) throws SQLException {
+        Statement stm = conn.createStatement();
+
+        ResultSet result = stm.executeQuery("select month(purchaseDate), sum(cost) from [Order] " +
+                "where year(purchaseDate) = year(getdate()) " +
+                "group by month(purchaseDate) ");
+
+        double[] monthlyRevenue = new double[12];
+        for (int i=0; i<12; i++)
+            monthlyRevenue[i] = 0;
+
+        while(result.next()) {
+            monthlyRevenue[result.getInt(1)-1] = result.getDouble(2);
+        }
+
+        return monthlyRevenue;
+    }
+
     // Insert new Order
     public static int insertOrder(Connection conn, Account user) throws SQLException {
         PreparedStatement pstm = conn.prepareCall("insert into [Order](username, address, phoneNumber, fullname) " +

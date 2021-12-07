@@ -79,9 +79,10 @@
 
     <!-- Nav Item - Log out -->
     <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/logout">
+        <a class="nav-link" href="${pageContext.request.contextPath}/logout" data-toggle="modal" data-target="#logoutModal">
             <i class="fa fa-sign-out-alt"></i>
-            <span>Logout</span></a>
+            <span>Logout</span>
+        </a>
     </li>
 
 </ul>

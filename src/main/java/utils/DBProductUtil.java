@@ -8,6 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBProductUtil {
+    // Get number of Product
+    public static int getNumProduct(Connection conn) throws SQLException {
+        Statement stmt = conn.createStatement();
+
+        ResultSet rs = stmt.executeQuery("select count(id) from Product");
+
+        if (rs.next())
+            return rs.getInt(1);
+        return 0;
+    }
+
     // Get a product by id
     public static Product getProduct_byId(Connection conn, int _id) throws SQLException {
         PreparedStatement pstm = conn.prepareCall("select * from Product where id = ?");

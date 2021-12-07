@@ -3,14 +3,24 @@ package utils;
 import beans.Brand;
 import conn.ConnectionUtils;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DBBrandUtil {
+    // Get brand with num product of brand
+
+    // Get number of Brand
+    public static int getNumBrand(Connection conn) throws SQLException {
+        Statement stmt = conn.createStatement();
+
+        ResultSet rs = stmt.executeQuery("select count(id) from Brand");
+
+        if (rs.next())
+            return rs.getInt(1);
+        return 0;
+    }
+
     // get all brand
     public static List<Brand> getAllBrand(Connection conn) throws SQLException {
         List<Brand> listB = new ArrayList<>();
