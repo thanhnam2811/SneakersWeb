@@ -6,11 +6,7 @@
         <element id="directory" name="classes">
           <element id="module-output" name="SneakersWeb" />
         </element>
-        <element id="directory" name="lib">
-          <element id="library" level="project" name="javax.servlet.jsp.jstl-1.2.5" />
-          <element id="library" level="project" name="javax.servlet.jsp.jstl-api-1.2.2" />
-          <element id="library" level="project" name="mssql-jdbc-9.4.0.jre16" />
-        </element>
+        <element id="directory" name="lib" />
       </element>
       <element id="javaee-facet-resources" facet="SneakersWeb/web/Web" />
     </root>

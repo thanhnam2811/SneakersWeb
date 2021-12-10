@@ -2,17 +2,16 @@ package servlets;
 
 import beans.Brand;
 import utils.DBBrandUtil;
-import utils.DBProductUtil;
 import utils.MyUtils;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.util.Collections;
 import java.util.List;
 
 @WebServlet(name = "brandManagement", value = "/brandManagement")

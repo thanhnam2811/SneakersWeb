@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBBrandUtil {
-    // Get brand with num product of brand
 
     // Get number of Brand
     public static int getNumBrand(Connection conn) throws SQLException {
@@ -40,7 +39,7 @@ public class DBBrandUtil {
         return listB;
     }
 
-    public static void insertBrand(Connection conn,Brand brand) throws SQLException{
+    public static void insertBrand(Connection conn, Brand brand) throws SQLException {
         PreparedStatement pstm = conn.prepareCall("insert into Brand(name, email, logo) " +
                 "values(?, ?, ?)");
         pstm.setString(1, brand.getName());
@@ -53,7 +52,7 @@ public class DBBrandUtil {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Connection conn = ConnectionUtils.getConnection();
         List<Brand> listB = getAllBrand(conn);
-        for (Brand b : listB ) {
+        for (Brand b : listB) {
             System.out.println(b);
         }
     }

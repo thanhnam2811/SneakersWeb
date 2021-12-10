@@ -20,8 +20,12 @@ import java.util.List;
 
 @WebServlet(name = "login-register", value = "/login-register")
 public class login_register extends HttpServlet {
+    private static String prePage = null;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        prePage = request.getHeader("referer");
+
         // Page name
         request.setAttribute("pageName", "login-register");
         request.getRequestDispatcher("WEB-INF/views/login-register.jsp").forward(request, response);
@@ -137,9 +141,14 @@ public class login_register extends HttpServlet {
             if (user.isAdmin())
                 // Chuyển sang trang admin
                 response.sendRedirect(request.getContextPath() + "/admin-home");
-            else
-                // Redirect (Chuyển hướng) sang trang /userInfo.
-                response.sendRedirect(request.getContextPath() + "/my-account");
+            else {
+                System.out.println(prePage);
+                if (prePage == null || prePage.contains("login"))
+                    response.sendRedirect(request.getContextPath() + "/home");
+                else
+                    // Redirect (Chuyển hướng) sang trang /userInfo.
+                    response.sendRedirect(prePage);
+            }
         }
     }
 

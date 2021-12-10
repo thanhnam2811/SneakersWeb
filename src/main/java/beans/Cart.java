@@ -1,7 +1,5 @@
 package beans;
 
-import java.sql.Connection;
-
 public class Cart {
     private int id, quantity;
     private Product product;

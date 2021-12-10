@@ -2,7 +2,6 @@ package servlets;
 
 import beans.Brand;
 import beans.Product;
-import conn.ConnectionUtils;
 import utils.DBBrandUtil;
 import utils.DBProductUtil;
 import utils.MyUtils;

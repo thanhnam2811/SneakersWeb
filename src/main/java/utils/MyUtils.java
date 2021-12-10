@@ -3,12 +3,13 @@ package utils;
 import beans.Account;
 import beans.Cart;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.List;
-
 import javax.servlet.ServletRequest;
-import javax.servlet.http.*;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.sql.Connection;
+import java.util.List;
 
 public class MyUtils {
 

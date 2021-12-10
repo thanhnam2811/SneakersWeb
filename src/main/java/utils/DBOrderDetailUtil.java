@@ -1,8 +1,6 @@
 package utils;
 
 import beans.Cart;
-import beans.Product;
-import conn.ConnectionUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

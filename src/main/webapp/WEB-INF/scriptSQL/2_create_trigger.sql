@@ -10,9 +10,9 @@ create trigger after_insert_update_OrderDetail
     after insert,
     update as
     declare
-        @idOrder int, @orderDetailCost real, @idOrderDetail int, @username varchar(50), @idProduct int
+        @idOrder int, @orderDetailCost real, @idOrderDetail int, @username varchar(50), @idProduct int, @quantity int
     select @idOrder = new.idOrder, @orderDetailCost = new.quantity * p.cost, @idOrderDetail = new.id,
-           @username =  ord.username, @idProduct = new.idProduct
+           @username =  ord.username, @idProduct = new.idProduct, @quantity = new.quantity
     from inserted new, product p, [Order] ord
     where new.idProduct = p.id and new.idOrder = ord.id
 begin
@@ -27,6 +27,10 @@ begin
     delete Cart
     where Cart.idProduct = @idProduct
       and Cart.username = @username
+
+    update Product
+    set quantity -= @quantity
+    where id = @idProduct
 end
 go
 
