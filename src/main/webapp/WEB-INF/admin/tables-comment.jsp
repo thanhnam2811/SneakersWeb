@@ -5,7 +5,10 @@
   Time: 6:31 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="beans.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -87,32 +90,41 @@
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                <tr>
-                                    <!-- Product -->
-                                    <td>
-                                        <img src="img/logo-demo.png" style="width: 120px; height: 150px;"/>
-                                    </td>
+                                <c:forEach items="${requestScope.CommentList}" var="o">
+                                    <tr>
+                                        <!-- Product -->
+                                        <td>
+                                            <img src="${o.getImageProduct(ProductList)}" style="width: 120px; height: 150px;"/>
+                                        </td>
 
-                                    <!-- Username -->
-                                    <td style="text-align: left; vertical-align: middle;">
-                                        nam
-                                    </td>
+                                        <!-- Username -->
+                                        <td style="text-align: left; vertical-align: middle;">
+                                                ${o.username}
+                                        </td>
 
-                                    <!-- Comment -->
-                                    <td style="text-align: left; vertical-align: middle;">
-                                        Comment
-                                    </td>
+                                        <!-- Comment -->
+                                        <td style="text-align: left; vertical-align: middle;">
+                                            ${o.comment}
+                                        </td>
 
-                                    <!-- Action -->
-                                    <td style="text-align: center; vertical-align: middle;">
-                                        <a href="# " class="btn btn-danger btn-icon-split btn-sm ">
+                                        <!-- Action -->
+                                        <td style="text-align: center; vertical-align: middle;">
+<%--                                            <a href="# " class="btn btn-danger btn-icon-split btn-sm ">--%>
+<%--                                                        <span class="icon text-white-50 ">--%>
+<%--                                                            <i class="fas fa-trash "></i>--%>
+<%--                                                        </span>--%>
+<%--                                                <span class="text ">Delete</span>--%>
+<%--                                            </a>--%>
+                                            <form action="manage-comment?id=${o.id}" method="post">
+                                                <button class="btn btn-danger btn-icon-split btn-sm" style="width: 100px;" type="submit">
                                                     <span class="icon text-white-50 ">
-                                                        <i class="fas fa-trash "></i>
-                                                    </span>
-                                            <span class="text ">Delete</span>
-                                        </a>
-                                    </td>
-                                </tr>
+                                                            <i class="fas fa-trash "></i>
+                                                        </span>
+                                                    <span class="text ">Delete</span></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
                                 </tbody>
                             </table>
                         </div>

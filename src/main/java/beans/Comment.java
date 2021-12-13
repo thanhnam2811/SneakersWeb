@@ -1,5 +1,12 @@
 package beans;
 
+import utils.DBBrandUtil;
+import utils.DBProductUtil;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+
 public class Comment {
     private int id, idProduct;
     private String username, comment;
@@ -13,7 +20,13 @@ public class Comment {
         this.username = username;
         this.comment = comment;
     }
-
+    public String getImageProduct(List<Product> listProduct) throws SQLException {
+        for (Product p: listProduct ) {
+            if (p.getId() == idProduct)
+                return p.getImage();
+        }
+        return "Unknown";
+    }
     public int getId() {
         return id;
     }
