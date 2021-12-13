@@ -5,7 +5,10 @@
   Time: 6:33 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="beans.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -88,43 +91,54 @@
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                <tr>
-                                    <!-- ID -->
-                                    <td>
-                                        1
-                                    </td>
+                                <c:forEach items="${requestScope.listAccount}" var="o">
+                                    <c:if test="${o.admin == false}">
+                                    <tr>
+                                        <!-- ID -->
+                                        <td>
+                                            ${o.id}
+                                        </td>
 
-                                    <!-- Avatar -->
-                                    <td>
-                                        <img src="img/avatar-demo.png" style="width: 125px; height: 150px;" />
-                                    </td>
+                                        <!-- Avatar -->
+                                        <td>
+                                            <img src="${o.avatar == null ? "img/avatar/avatar.png" : o.avatar}" style="width: 125px; height: 150px;" />
+                                        </td>
 
-                                    <!-- Username -->
-                                    <td style="text-align: left; vertical-align: middle;">
-                                        nam
-                                    </td>
+                                        <!-- Username -->
+                                        <td style="text-align: left; vertical-align: middle;">
+                                            ${o.username}
+                                        </td>
 
-                                    <!-- Information -->
-                                    <td style="text-align: left; vertical-align: middle;">
-                                        <p>Full name:
-                                        </p>
-                                        <p>Sex: </p>
-                                        <p>Phone number: </p>
-                                        <p>Address: <br>
-                                        </p>
-                                        <p>Date of birth: </p>
-                                    </td>
+                                        <!-- Information -->
+                                        <td style="text-align: left; vertical-align: middle;">
+                                            <p>Full name:${o.fullname}
+                                            </p>
+                                            <p>Sex:${o.sex} </p>
+                                            <p>Phone number: ${o.phoneNumber}</p>
+                                            <p>Address:${o.address} <br>
+                                            </p>
+                                            <p>Date of birth: ${o.dateOfBirth}</p>
+                                        </td>
 
-                                    <!-- Action -->
-                                    <td style="text-align: center; vertical-align: middle;">
-                                        <a href="# " class="btn btn-danger btn-icon-split btn-sm ">
+                                        <!-- Action -->
+                                        <td style="text-align: center; vertical-align: middle;">
+<%--                                            <a href="# " class="btn btn-danger btn-icon-split btn-sm ">--%>
+<%--                                                        <span class="icon text-white-50 ">--%>
+<%--                                                            <i class="fas fa-trash "></i>--%>
+<%--                                                        </span>--%>
+<%--                                                <span class="text ">Delete</span>--%>
+<%--                                            </a>--%>
+                                            <form action="manage-account?id=${o.id}" method="post">
+                                                <button class="btn btn-danger btn-icon-split btn-sm" style="width: 100px;" type="submit">
                                                     <span class="icon text-white-50 ">
-                                                        <i class="fas fa-trash "></i>
-                                                    </span>
-                                            <span class="text ">Delete</span>
-                                        </a>
-                                    </td>
-                                </tr>
+                                                            <i class="fas fa-trash "></i>
+                                                        </span>
+                                                    <span class="text ">Delete</span></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    </c:if>
+                                </c:forEach>
                                 </tbody>
                             </table>
                         </div>

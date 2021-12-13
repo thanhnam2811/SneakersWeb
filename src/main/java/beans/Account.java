@@ -10,6 +10,18 @@ public class Account {
 
     public Account(){}
 
+    public Account(int id, String username, String password, String fullname,
+                   String avatar, String phoneNumber, String address, String sex, Date dateOfBirth) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.fullname = fullname;
+        this.avatar = avatar;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.sex = sex;
+        this.dateOfBirth = dateOfBirth;
+    }
     public Account(int id, String username, String password, String fullname, String avatar, String phoneNumber, String address, String sex, Date dateOfBirth, boolean isAdmin) {
         this.id = id;
         this.username = username;

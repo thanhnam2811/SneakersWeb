@@ -5,7 +5,10 @@
   Time: 6:24 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="beans.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -93,51 +96,57 @@
                                     </tr>
                                     </tfoot>
                                     <tbody>
-                                    <tr>
-                                        <!-- ID -->
-                                        <td style="text-align: left; vertical-align: middle;">
-                                            1
-                                        </td>
+                                    <c:forEach items="${requestScope.listProduct}" var="o">
+                                        <tr>
+                                            <!-- ID -->
+                                            <td style="text-align: left; vertical-align: middle;">
+                                                ${o.id}
+                                            </td>
 
-                                        <!-- Image -->
-                                        <td>
-                                            <img src="img/product-demo.jpg" style="width: 120px; height: 150px;"/>
-                                        </td>
+                                            <!-- Image -->
+                                            <td>
+                                                <img src="${o.image}" style="width: 120px; height: 150px;"/>
+                                            </td>
 
-                                        <!-- Info -->
-                                        <td>
-                                            <p>Tên: [Tên sản phẩm]</p>
-                                            <p>Thương hiệu: [Thương hiệu]]</p>
-                                            <p>Mô tả: [Mô tả]</p>
-                                            <p>Ngày đăng bán: [dd/MM/yyy]</p>
-                                        </td>
+                                            <!-- Info -->
+                                            <td>
+                                                <p>Tên: ${o.name}</p>
+                                                <p>Thương hiệu: ${o.getBrandName(conn)}</p>
+                                            <%--         Mô tả quá dài--%>
+<%--                                                <p>Mô tả: ${o.describe}</p>--%>
+                                                <p>Ngày đăng bán: ${o.saleDate}</p>
+                                            </td>
 
-                                        <!-- Quantity -->
-                                        <td style="text-align: left; vertical-align: middle;">
-                                            15
-                                        </td>
+                                            <!-- Quantity -->
+                                            <td style="text-align: left; vertical-align: middle;">
+                                                ${o.quantity}
+                                            </td>
 
-                                        <!-- Cost -->
-                                        <td style="text-align: left; vertical-align: middle;">
-                                            1500000
-                                        </td>
+                                            <!-- Cost -->
+                                            <td style="text-align: left; vertical-align: middle;">
+                                                <span >
+									<fmt:formatNumber type="number"
+                                                      maxFractionDigits="0" value="${o.cost}"/>vnđ
+								                        </span>
+                                            </td>
 
-                                        <!-- Action -->
-                                        <td style="text-align: center; vertical-align: middle;">
-                                            <a href="# " class="btn btn-info btn-icon-split btn-sm ">
-                                                        <span class="icon text-white-50 ">
-                                                        <i class="fas fa-info-circle "></i>
-                                                    </span>
-                                                <span class="text ">Edit</span>
-                                            </a>
-                                            <a href="# " class="btn btn-danger btn-icon-split btn-sm ">
-                                                        <span class="icon text-white-50 ">
-                                                        <i class="fas fa-trash "></i>
-                                                    </span>
-                                                <span class="text ">Delete</span>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                            <!-- Action -->
+                                            <td style="text-align: center; vertical-align: middle;">
+                                                <a href="# " class="btn btn-info btn-icon-split btn-sm ">
+                                                            <span class="icon text-white-50 ">
+                                                            <i class="fas fa-info-circle "></i>
+                                                        </span>
+                                                    <span class="text ">Edit</span>
+                                                </a>
+                                                <a href="# " class="btn btn-danger btn-icon-split btn-sm ">
+                                                            <span class="icon text-white-50 ">
+                                                            <i class="fas fa-trash "></i>
+                                                        </span>
+                                                    <span class="text ">Delete</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>

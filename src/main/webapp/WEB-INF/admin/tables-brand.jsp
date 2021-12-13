@@ -5,7 +5,10 @@
   Time: 6:28 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="beans.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,43 +93,61 @@
                                     </tr>
                                     </tfoot>
                                     <tbody>
-                                    <tr>
-                                        <!-- ID -->
-                                        <td style="text-align: left; vertical-align: middle;">
-                                            1
-                                        </td>
+                                    <c:forEach items="${requestScope.listBrand}" var="o">
+                                        <tr>
+                                            <!-- ID -->
+                                            <td style="text-align: left; vertical-align: middle;">
+                                                ${o.id}
+                                            </td>
 
-                                        <!-- Image -->
-                                        <td>
-                                            <img src="img/logo-demo.png" style="width: 120px; height: 150px;" />
-                                        </td>
+                                            <!-- Image -->
+                                            <td>
+                                                <img src="${o.logo}" style="width: 120px; height: 150px;" />
+                                            </td>
 
-                                        <!-- Info -->
-                                        <td style="text-align: left; vertical-align: middle;">
-                                            [Tên brand]
-                                        </td>
+                                            <!-- Info -->
+                                            <td style="text-align: left; vertical-align: middle;">
+                                                ${o.name}
+                                            </td>
 
-                                        <!-- Quantity -->
-                                        <td style="text-align: left; vertical-align: middle;">
-                                            brand@gamil.com
-                                        </td>
+                                            <!-- Email -->
+                                            <td style="text-align: left; vertical-align: middle;">
+                                                ${o.email}
+                                            </td>
 
-                                        <!-- Action -->
-                                        <td style="text-align: center; vertical-align: middle;">
-                                            <a href="# " class="btn btn-info btn-icon-split btn-sm ">
-                                                        <span class="icon text-white-50 ">
-                                                        <i class="fas fa-info-circle "></i>
-                                                    </span>
-                                                <span class="text ">Edit</span>
-                                            </a>
-                                            <a href="# " class="btn btn-danger btn-icon-split btn-sm ">
-                                                        <span class="icon text-white-50 ">
-                                                        <i class="fas fa-trash "></i>
-                                                    </span>
-                                                <span class="text ">Delete</span>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                            <!-- Action -->
+                                            <td style="text-align: center; vertical-align: middle;">
+<%--                                                <a href="# " class="btn btn-info btn-icon-split btn-sm ">--%>
+<%--                                                            <span class="icon text-white-50 ">--%>
+<%--                                                            <i class="fas fa-info-circle "></i>--%>
+<%--                                                        </span>--%>
+<%--                                                    <span class="text ">Edit</span>--%>
+<%--                                                </a>--%>
+<%--                                                <a href="# " class="btn btn-danger btn-icon-split btn-sm ">--%>
+<%--                                                            <span class="icon text-white-50 ">--%>
+<%--                                                            <i class="fas fa-trash "></i>--%>
+<%--                                                        </span>--%>
+<%--                                                    <span class="text ">Delete</span>--%>
+<%--                                                </a>--%>
+                                                <form action="manage-brand?type=edit&id=${o.id}" method="post">
+                                                    <button class="btn btn-info btn-icon-split btn-sm " style="width: 100px;" type="submit">
+                                                    <span class="icon text-white-50 ">
+                                                            <i class="fas fa-info-circle "></i>
+                                                        </span>
+                                                        <span class="text ">Edit</span>
+                                                    </button>
+                                                </form>
+
+                                                <form action="manage-brand?type=delete&id=${o.id}" method="post">
+                                                    <button class="btn btn-danger btn-icon-split btn-sm" style="width: 100px;" type="submit">
+                                                    <span class="icon text-white-50 ">
+                                                            <i class="fas fa-trash "></i>
+                                                        </span>
+                                                        <span class="text ">Delete</span></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
