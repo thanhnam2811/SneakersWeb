@@ -30,13 +30,13 @@
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <a class="navbar-brand logo_h" href="${pageContext.request.contextPath}/home">
                     <img src="img/logo.png" alt="home"></a>
-<%--                <button class="navbar-toggler" type="button" data-toggle="collapse"--%>
-<%--                        data-target="#navbarSupportedContent"--%>
-<%--                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">--%>
-<%--                    <span class="icon-bar"></span>--%>
-<%--                    <span class="icon-bar"></span>--%>
-<%--                    <span class="icon-bar"></span>--%>
-<%--                </button>--%>
+                <%--                <button class="navbar-toggler" type="button" data-toggle="collapse"--%>
+                <%--                        data-target="#navbarSupportedContent"--%>
+                <%--                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">--%>
+                <%--                    <span class="icon-bar"></span>--%>
+                <%--                    <span class="icon-bar"></span>--%>
+                <%--                    <span class="icon-bar"></span>--%>
+                <%--                </button>--%>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto">
@@ -54,8 +54,15 @@
                         </c:if>
                         <c:if test="${sessionScope.loginedUser != null}">
                             <li class="nav-item ${pageName == "my-account" ? "active" : ""}">
-                                <a class="nav-link" href="${pageContext.request.contextPath}/my-account">My account</a>
+                                <a class="nav-link" href="${pageContext.request.contextPath}/my-account">My
+                                    account</a>
                             </li>
+                            <c:if test="${sessionScope.loginedUser.isAdmin()}">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/admin-home">Admin
+                                        page</a>
+                                </li>
+                            </c:if>
                         </c:if>
                     </ul>
 
@@ -70,9 +77,9 @@
                             </li>
                         </c:if>
 
-<%--                        <li class="nav-item">--%>
-<%--                            <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>--%>
-<%--                        </li>--%>
+                        <%--                        <li class="nav-item">--%>
+                        <%--                            <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>--%>
+                        <%--                        </li>--%>
                     </ul>
                 </div>
             </div>

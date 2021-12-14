@@ -417,7 +417,7 @@ insert into Account(username, password, fullname, avatar, phoneNumber, address, 
 insert into Account(username, password, fullname, avatar, phoneNumber, address, sex, dateOfBirth, isAdmin)
 	values('toan', 'toantoantoan', N'Nguyễn Phúc Thanh Toàn', 'img/avatar/toan.jpg', '0986537469', N'Tây Ninh', 'Male', '2001-01-01', 0);
 insert into Account(username, password, fullname, avatar, phoneNumber, address, sex, dateOfBirth, isAdmin)
-	values('admin', 'adminadminadmin', 'Admin', 'img/avatar/admin.jpg', '0999999999', N'TP.HCM', 'Male', '2001-01-01', 1);
+	values('admin', 'adminadminadmin', 'Admin', 'img/avatar/admin.png', '0999999999', N'TP.HCM', 'Male', '2001-01-01', 1);
 
 -- Comment (id, idProduct, username, comment)
 insert into Comment(idProduct, username, comment) values(1, 'nam', N'Sản phẩm rất tuyệt vời!')

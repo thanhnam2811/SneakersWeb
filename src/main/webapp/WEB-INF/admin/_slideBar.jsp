@@ -20,6 +20,13 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
+    <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/home">
+            <i class="fas fa-fw fa-home"></i>
+            <span>Home</span></a>
+    </li>
+
+    <!-- Nav Item - Dashboard -->
     <li class="nav-item ${requestScope.pageName.contains("Dashboard") ? "active" : ""}">
         <a class="nav-link" href="${pageContext.request.contextPath}/admin-home">
             <i class="fas fa-fw fa-tachometer-alt"></i>

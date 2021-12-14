@@ -21,7 +21,8 @@
 
     <!-- Custom fonts for this template -->
     <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
@@ -30,7 +31,7 @@
     <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     <!-- Select 2 -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
 
     <!-- Icon -->
     <link rel="icon" href="img/fav.png">
@@ -72,47 +73,66 @@
                             <div class="row px-3">
                                 <!-- Avatar -->
                                 <div class="col-xl-3">
-                                    <img src="img/avatar-demo.png" style="width: 200px; height: 225px;" />
+                                    <img src="${loginedUser.avatar}" alt="" style="width: 200px; height: 225px;"/>
                                 </div>
                                 <form class="user col-xl-9">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="_username" name="_username" placeholder="username" readonly>
+                                        <input type="text" class="form-control" id="_username" name="_username" readonly
+                                               value="${loginedUser.username}">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="_fullname" name="_fullname" placeholder="Full Name" readonly>
+                                        <input type="text" class="form-control" id="_fullname" name="_fullname"
+                                               placeholder="Full Name" readonly value="${loginedUser.fullname}">
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-4">
                                             <select class="select2 form-control" id="_sex" name="_sex" readonly>
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
+                                                <option value="Male" ${loginedUser.sex == "Male" ? "selected" : ""}>
+                                                    Male
+                                                </option>
+                                                <option value="Female" ${loginedUser.sex == "Female" ? "selected" : ""}>
+                                                    Female
+                                                </option>
                                             </select>
                                         </div>
                                         <div class="col-sm-8">
-                                            <input type="date" class="form-control" id="_dateOfBirth" name="_dateOfBirth" readonly>
+                                            <input type="date" class="form-control" id="_dateOfBirth"
+                                                   name="_dateOfBirth" readonly value="${loginedUser.dateOfBirth}">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="tel" class="form-control" id="_phoneNumber" name="_phoneNumber" placeholder="Phone number (10 numbers)" pattern="[0-9]{10}" readonly>
+                                        <input type="tel" class="form-control" id="_phoneNumber" name="_phoneNumber"
+                                               placeholder="Phone number (10 numbers)" pattern="[0-9]{10}" readonly
+                                               value="${loginedUser.phoneNumber}">
                                     </div>
                                     <div class="form-group">
-                                        <!-- <input type="text" class="form-control form-control-user" id="_describe" placeholder="Describe"> -->
-                                        <textarea class="form-control" id="_address" name="_address" placeholder="Address" readonly></textarea>
+                                        <input type="text" class="form-control" id="_address" name="_address"
+                                               placeholder="Address" readonly
+                                               value="${loginedUser.address}">
                                     </div>
                                     <hr>
                                     <div class="form-group row">
                                         <div class="col-sm-4">
-                                            <button type="submit" class="btn btn-primary btn-block">
+                                            <button id="btnEdit" class="btn btn-primary btn-block"
+                                                    onclick="
+                                                    document.getElementById('_fullname').readOnly=false;
+                                                    document.getElementById('_sex').readOnly=false;
+                                                    document.getElementById('_dateOfBirth').readOnly=false;
+                                                    document.getElementById('_phoneNumber').readOnly=false;
+                                                    document.getElementById('_describe').readOnly=false;
+                                                    document.getElementById('btnSave').disabled=false;
+                                                    document.getElementById('btnReset').disabled=false;
+                                                    document.getElementById('btnEdit').disabled=false; ">
                                                 Edit
                                             </button>
                                         </div>
                                         <div class="col-sm-4">
-                                            <button type="submit" class="btn btn-success btn-block" disabled>
+                                            <button type="submit" id="btnSave" class="btn btn-success btn-block" disabled>
                                                 Save
                                             </button>
                                         </div>
                                         <div class="col-sm-4">
-                                            <button type="reset" class="btn btn-secondary btn-block" disabled>
+                                            <button type="reset" id="btnReset" class="btn btn-secondary btn-block" disabled>
                                                 Reset
                                             </button>
                                         </div>
@@ -130,13 +150,16 @@
                             </div>
                             <form class="user px-3">
                                 <div class="form-group">
-                                    <input type="password" class="form-control" id="_oldPassword" name="_oldPassword" placeholder="Old Password">
+                                    <input type="password" class="form-control" id="_oldPassword" name="_oldPassword"
+                                           placeholder="Old Password">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" id="_newPassword" name="_newPassword" placeholder="New Password">
+                                    <input type="password" class="form-control" id="_newPassword" name="_newPassword"
+                                           placeholder="New Password">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" id="_confirmPassword" name="_confirmPassword" placeholder="Repeat New Password">
+                                    <input type="password" class="form-control" id="_confirmPassword"
+                                           name="_confirmPassword" placeholder="Repeat New Password">
                                 </div>
                                 <hr>
                                 <div class="form-group">
