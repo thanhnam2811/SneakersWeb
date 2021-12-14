@@ -4,8 +4,33 @@ import beans.Account;
 import conn.ConnectionUtils;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBAccountUtil {
+    // get newest user
+    public static List<Account> getNewestUser(Connection conn) throws SQLException {
+        PreparedStatement pstm = conn.prepareCall("select top 3 * from Account order by id desc");
+        ResultSet rs = pstm.executeQuery();
+
+        List<Account> listA = new ArrayList<Account>();
+
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String username = rs.getString("username");
+            String password = rs.getString("password");
+            String fullname = rs.getString("fullname");
+            String avatar = rs.getString("avatar");
+            String phoneNumber = rs.getString("phoneNumber");
+            String address = rs.getString("address");
+            String sex = rs.getString("sex");
+            Date dateOfBirth = rs.getDate("dateOfBirth");
+            boolean isAdmin = rs.getBoolean("isAdmin");
+            listA.add(new Account(id, username, password, fullname, avatar, phoneNumber, address, sex, dateOfBirth, isAdmin));
+        }
+        return listA;
+    }
+
     // findAccount
     public static Account findAccount(Connection conn, String username, String password) throws SQLException {
         PreparedStatement pstm = conn.prepareCall("{call findAccount(?, ?)}");

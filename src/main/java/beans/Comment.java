@@ -1,5 +1,7 @@
 package beans;
 
+import java.util.List;
+
 public class Comment {
     private int id, idProduct;
     private String username, comment;
@@ -12,6 +14,13 @@ public class Comment {
         this.idProduct = idProduct;
         this.username = username;
         this.comment = comment;
+    }
+
+    public Product getProduct(List<Product> listP) {
+        for (Product p:listP)
+            if (idProduct == p.getId())
+                return p;
+        return null;
     }
 
     public int getId() {

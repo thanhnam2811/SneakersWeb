@@ -8,19 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBProductUtil {
-    // Get num product in brand
-    public static int getNumProductInBrand(Connection conn, int idBrand) throws SQLException {
-        PreparedStatement pstmt = conn.prepareCall("select count(id) from Product where idBrand=?");
-
-        pstmt.setInt(1, idBrand);
-
-        ResultSet rs = pstmt.executeQuery();
-
-        if (rs.next())
-            return rs.getInt(1);
-        return 0;
-    }
-
     // Get number of Product
     public static int getNumProduct(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();

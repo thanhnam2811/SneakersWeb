@@ -1,10 +1,10 @@
 package servlets;
 
 import beans.Account;
-import utils.DBBrandUtil;
-import utils.DBOrderUtil;
-import utils.DBProductUtil;
-import utils.MyUtils;
+import beans.Brand;
+import beans.Comment;
+import beans.Product;
+import utils.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(name = "admin-home", value = "/admin-home")
 public class admin_home extends HttpServlet {
@@ -30,6 +31,22 @@ public class admin_home extends HttpServlet {
             Connection conn = MyUtils.getStoredConnection(request);
 
             try {
+                // list brand
+                List<Brand> listBrand = DBBrandUtil.getAllBrand(conn);
+                request.setAttribute("listBrand", listBrand);
+
+                // list product
+                List<Product> listProduct = DBProductUtil.getAllProduct(conn);
+                request.setAttribute("listProduct", listProduct);
+
+                // list comment (select top 4 comment)
+                List<Comment> listComment = DBCommentUtil.getLastestComment(conn);
+                request.setAttribute("listComment", listComment);
+
+                // list account (select top 3 account)
+                List<Account> listAccount = DBAccountUtil.getNewestUser(conn);
+                request.setAttribute("listAccount", listAccount);
+
                 // monthly revenue
                 double[] dataMonthlyRevenue = DBOrderUtil.getMonthlyRevenue(conn);
                 request.setAttribute("dataMonthlyRevenue", dataMonthlyRevenue);

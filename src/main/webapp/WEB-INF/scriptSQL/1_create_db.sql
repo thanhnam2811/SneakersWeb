@@ -18,7 +18,9 @@ create table Brand (
 -- Product (id, name, idBrand, image, describe, quantity, cost, saleDate)
 create table Product(
 	id int primary key identity, 
-	idBrand int references brand(id),
+	idBrand int references brand(id)
+        on delete cascade
+        on update cascade,
 	name nvarchar(200), 
 	image nvarchar(max), 
 	describe nvarchar(max), 
@@ -44,15 +46,21 @@ create table Account (
 -- Comment (id, idProduct, username, comment)
 create table Comment (
 	id int primary key identity, 
-	idProduct int references product(id), 
-	username varchar(50) references account(username), 
+	idProduct int references product(id)
+        on delete cascade
+        on update cascade,
+	username varchar(50) references account(username)
+        on delete cascade
+        on update cascade,
 	comment nvarchar(max)
 )
 
 -- Cart (id, username, idProduct, quantity, cost)
 create table Cart (
 	id int primary key identity, 
-	username varchar(50) references account(username), 
+	username varchar(50) references account(username)
+        on delete cascade
+        on update cascade,
 	idProduct int references product(id), 
 	quantity int check ( quantity >= 0), 
 	cost real not null default 0,
@@ -62,7 +70,9 @@ create table Cart (
 -- Order (id, username, cost,  purchaseDate, address, phoneNumber, fullname)
 create table [Order] (
 	id int primary key identity, 
-	username varchar(50) references account(username), 
+	username varchar(50) references account(username)
+    on delete cascade
+    on update cascade,
 	cost real not null default 0 check (cost >= 0),  
 	purchaseDate date not null default getdate(), 
 	address nvarchar(max), 
@@ -73,8 +83,12 @@ create table [Order] (
 -- OrderDetail (id, idOrder, idProduct, quantity, cost)
 create table OrderDetail (
 	id int primary key identity, 
-	idOrder int references [Order](id), 
-	idProduct int references Product(id), 
+	idOrder int references [Order](id)
+        on delete cascade
+        on update cascade,
+	idProduct int references Product(id)
+        on delete cascade
+        on update cascade,
 	quantity int check (quantity >= 0), 
 	cost real not null default 0 check (cost >= 0)
 )

@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="utils.DBProductUtil" %>
 <%--
   Created by IntelliJ IDEA.
   User: thanh
@@ -203,10 +204,10 @@
                                 </div>
                                 <div class="mt-4 text-center small">
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Adidas
+                                            <i class="fas fa-circle text-primary"></i> Nike
                                         </span>
                                     <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Nike
+                                            <i class="fas fa-circle text-success"></i> Adidas
                                         </span>
                                 </div>
                             </div>
@@ -245,20 +246,21 @@
                                         </tr>
                                         </tfoot>
                                         <tbody>
+                                        <c:forEach items="${listComment}" var="c">
                                         <tr>
                                             <!-- Product -->
                                             <td>
-                                                <img src="img/logo-demo.png" style="width: 120px; height: 150px;"/>
+                                                <img src="${c.getProduct(listProduct).getImage()}" style="width: 120px; height: 150px;"/>
                                             </td>
 
                                             <!-- Username -->
                                             <td style="text-align: left; vertical-align: middle;">
-                                                nam
+                                                ${c.username}
                                             </td>
 
                                             <!-- Comment -->
                                             <td style="text-align: left; vertical-align: middle;">
-                                                Comment
+                                                ${c.comment}
                                             </td>
 
                                             <!-- Action -->
@@ -271,6 +273,7 @@
                                                 </a>
                                             </td>
                                         </tr>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -282,7 +285,7 @@
                         <!-- Illustrations -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Potential Customers</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Newest Users</h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -304,33 +307,33 @@
                                         </tr>
                                         </tfoot>
                                         <tbody>
+                                        <c:forEach items="${listAccount}" var="a">
                                         <tr>
                                             <!-- ID -->
                                             <td>
-                                                1
+                                                ${a.id}
                                             </td>
 
                                             <!-- Avatar -->
                                             <td>
-                                                <img src="img/avatar-demo.png" style="width: 125px; height: 150px;"/>
+                                                <img src="${a.avatar}" style="width: 125px; height: 150px;"/>
                                             </td>
 
                                             <!-- Username -->
                                             <td style="text-align: left; vertical-align: middle;">
-                                                nam
+                                                ${a.username}
                                             </td>
 
                                             <!-- Information -->
                                             <td style="text-align: left; vertical-align: middle;">
-                                                <p>Full name:
-                                                </p>
-                                                <p>Sex: </p>
-                                                <p>Phone number: </p>
-                                                <p>Address: <br>
-                                                </p>
-                                                <p>Date of birth: </p>
+                                                <p>Full name: ${a.fullname}</p>
+                                                <p>Sex: ${a.sex}</p>
+                                                <p>Phone number: ${a.phoneNumber}</p>
+                                                <p>Address: ${a.address}</p>
+                                                <p>Date of birth: ${a.dateOfBirth}</p>
                                             </td>
                                         </tr>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -510,9 +513,9 @@
     var myPieChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ["Adidas", "Nike"],
+            labels: [<c:forEach items="${requestScope.listBrand}" var="b">"${b.name}", </c:forEach>],
             datasets: [{
-                data: [99, 99],
+                data: [<c:forEach items="${requestScope.listBrand}" var="b">${b.getNumProduct(requestScope.listProduct)}, </c:forEach>],
                 backgroundColor: ['#4e73df', '#1cc88a'],
                 hoverBackgroundColor: ['#2e59d9', '#17a673'],
                 hoverBorderColor: "rgba(234, 236, 244, 1)",

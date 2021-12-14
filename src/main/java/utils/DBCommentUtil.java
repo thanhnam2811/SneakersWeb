@@ -11,7 +11,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBCommentUtil {
-    // Get comment by id product
+    // get lastest comment
+    public static List<Comment> getLastestComment(Connection conn) throws SQLException {
+        List<Comment> listC = new ArrayList<Comment>();
+
+        PreparedStatement pstm = conn.prepareCall("select top 4 * from Comment order by id desc");
+
+        ResultSet rs = pstm.executeQuery();
+
+        while (rs.next()) {
+            int id = rs.getInt(1);
+            int idProduct = rs.getInt(2);
+            String username = rs.getString(3);
+            String comment = rs.getString(4);
+            Comment c = new Comment(id, idProduct, username, comment);
+            listC.add(c);
+        }
+
+        return listC;
+    }
+
+    // Create comment
     public static boolean createComment(Connection conn, int idP, String username, String comment) throws SQLException {
         PreparedStatement pstm = conn.prepareCall("insert into Comment(idProduct, username, comment) values(?, ?, ?)");
         pstm.setInt(1, idP);
@@ -46,7 +66,7 @@ public class DBCommentUtil {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Connection conn = ConnectionUtils.getConnection();
-        List<Comment> listC = getComment_byIdProduct(conn,1);
+        List<Comment> listC = getLastestComment(conn);
         for (Comment c: listC)
             System.out.println(c);
     }

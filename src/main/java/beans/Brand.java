@@ -28,6 +28,13 @@ public class Brand {
         }
         return "All Products";
     }
+    public int getNumProduct(List<Product> listP) {
+        int count = 0;
+        for (Product p: listP)
+            if (p.getIdBrand() == id)
+                count++;
+        return count;
+    }
 
     public int getId() {
         return id;
