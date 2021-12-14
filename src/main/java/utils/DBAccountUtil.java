@@ -1,6 +1,7 @@
 package utils;
 
 import beans.Account;
+import beans.Comment;
 import conn.ConnectionUtils;
 
 import java.sql.*;
@@ -120,7 +121,37 @@ public class DBAccountUtil {
             return false;
         return true;
     }
+    // Get all account
+    public static List<Account> getAllAccount(Connection conn) throws SQLException {
+        List<Account> listC = new ArrayList<Account>();
+        PreparedStatement pstm = conn.prepareCall("select * from Account");
 
+        ResultSet rs = pstm.executeQuery();
+        while (rs.next()) {
+            int id = rs.getInt(1);
+            String username = rs.getString(2);
+            String password = rs.getString(3);
+            String fullname = rs.getString(4);
+            String avatar = rs.getString(5);
+            String phoneNumber = rs.getString(6);
+            String address = rs.getString(7);
+            String sex  = rs.getString(8);
+            Date dateOfBirth = rs.getDate(9);
+            boolean isAdmin = rs.getBoolean(10);
+            Account c = new Account(id,username,password,fullname,avatar,phoneNumber,address,sex,dateOfBirth,isAdmin);
+            listC.add(c);
+        }
+
+        return listC;
+    }
+    //Delete Account by ID
+    public static void DeleteAccountByID(Connection conn,int IDAccount) throws SQLException {
+        String sql = "DELETE FROM Account Where id = ?";
+
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1, IDAccount);
+        pstm.executeUpdate();
+    }
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Connection conn = ConnectionUtils.getConnection();
 //        boolean a = changePassword(conn, "thanhnam1324", "namnamnam", "thanhnam1324");

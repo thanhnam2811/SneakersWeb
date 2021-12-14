@@ -48,7 +48,14 @@ public class DBBrandUtil {
         pstm.execute();
 
     }
+    //Delete Brand by ID
+    public static void DeleteBrandByID(Connection conn,int IDBrand) throws SQLException {
+        String sql = "DELETE FROM Brand Where id = ?";
 
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1, IDBrand);
+        pstm.executeUpdate();
+    }
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Connection conn = ConnectionUtils.getConnection();
         List<Brand> listB = getAllBrand(conn);

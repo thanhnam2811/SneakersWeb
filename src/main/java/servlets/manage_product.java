@@ -1,6 +1,10 @@
 package servlets;
 
 import beans.Account;
+import beans.Brand;
+import beans.Product;
+import utils.DBBrandUtil;
+import utils.DBProductUtil;
 import utils.MyUtils;
 
 import javax.servlet.ServletException;
@@ -10,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(name = "manage-product", value = "/manage-product")
 public class manage_product extends HttpServlet {
@@ -22,6 +29,18 @@ public class manage_product extends HttpServlet {
         else if (loginedUser.isAdmin() == false)
             response.sendRedirect(request.getContextPath() + "/home");
         else {
+            Connection conn = MyUtils.getStoredConnection(request);
+            List<Product> listProduct = null;
+
+
+            try {
+                listProduct = DBProductUtil.getAllProduct(conn);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            //
+            request.setAttribute("listProduct", listProduct);
+            request.setAttribute("conn", conn);
             // Page name
             request.setAttribute("pageName", "Product");
             request.getRequestDispatcher("WEB-INF/admin/tables-product.jsp").forward(request, response);
