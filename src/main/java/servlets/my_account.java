@@ -28,12 +28,15 @@ public class my_account extends HttpServlet {
         }
         // Lưu thông tin vào request attribute trước khi forward (chuyển tiếp).
         request.setAttribute("user", loginedUser);
+        if (loginedUser.isAdmin())
+            response.sendRedirect(request.getContextPath() + "/admin-profile");
+        else {
+            // Page name
+            request.setAttribute("pageName", "my-account");
 
-        // Page name
-        request.setAttribute("pageName", "my-account");
-
-        // Nếu người dùng đã login thì forward (chuyển tiếp) tới trang
-        request.getRequestDispatcher("/WEB-INF/views/my-account.jsp").forward(request, response);
+            // Nếu người dùng đã login thì forward (chuyển tiếp) tới trang
+            request.getRequestDispatcher("/WEB-INF/views/my-account.jsp").forward(request, response);
+        }
     }
 
     @Override

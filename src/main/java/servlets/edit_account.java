@@ -33,11 +33,16 @@ public class edit_account extends HttpServlet {
         // Lưu thông tin vào request attribute trước khi forward (chuyển tiếp).
         request.setAttribute("user", loginedUser);
 
-        // Page name
-        request.setAttribute("pageName", "my-account");
+        if (loginedUser.isAdmin())
+            // Nếu người dùng đã login thì forward (chuyển tiếp) tới trang
+            request.getRequestDispatcher("/WEB-INF/admin/admin-profile.jsp").forward(request, response);
+        else {
+            // Page name
+            request.setAttribute("pageName", "my-account");
 
-        // Nếu người dùng đã login thì forward (chuyển tiếp) tới trang
-        request.getRequestDispatcher("/WEB-INF/views/edit-account.jsp").forward(request, response);
+            // Nếu người dùng đã login thì forward (chuyển tiếp) tới trang
+            request.getRequestDispatcher("/WEB-INF/views/edit-account.jsp").forward(request, response);
+        }
     }
 
     @Override
@@ -81,11 +86,14 @@ public class edit_account extends HttpServlet {
         }
 
         if (hasError) {
-            request.setAttribute("change_password_message", message);
             doGet(request, response);
         } else {
             MyUtils.storeLoginedUser(session, user);
-            response.sendRedirect(request.getContextPath() + "/my-account");
+            request.setAttribute("change_password_message", "Success!");
+            if (user.isAdmin())
+                request.getRequestDispatcher("/WEB-INF/admin/admin-profile.jsp").forward(request, response);
+            else
+                request.getRequestDispatcher("/WEB-INF/views/edit-account.jsp").forward(request, response);
         }
 
     }
@@ -129,7 +137,10 @@ public class edit_account extends HttpServlet {
             doGet(request, response);
         } else {
             MyUtils.storeLoginedUser(session, user);
-            response.sendRedirect(request.getContextPath() + "/my-account");
+            if (user.isAdmin())
+                response.sendRedirect(request.getContextPath() + "/admin-profile");
+            else
+                response.sendRedirect(request.getContextPath() + "/my-account");
         }
 
     }
