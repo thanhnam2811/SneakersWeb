@@ -50,20 +50,23 @@ public class manage_brand extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("id");
+        String id = request.getParameter("_id");
         String type = request.getParameter("type");
-        if (type.equals("forwardNew"))
-            forwardNewBrand(request, response);
-        else if (type.equals("delete"))
+        //Type
+        if(type == null && id == ""){
+            type = "add";
+        }
+        else if(type == null && id != ""){
+            type = "edit";
+        }
+
+        //Action
+        if (type.equals("delete"))
             DeleteBrand(request, response,id);
         else if(type.equals("add"))
             addBrand(request,response);
         else if(type.equals("edit"))
-            addBrand(request,response);
-    }
-    private void forwardNewBrand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/new-brand.jsp").forward(request, response);
-
+            editBrand(request,response,id);
     }
     private void DeleteBrand(HttpServletRequest request, HttpServletResponse response,String id) throws ServletException, IOException {
 
@@ -75,11 +78,29 @@ public class manage_brand extends HttpServlet {
         }
         new manage_brand().doGet(request,response);
     }
+    private void editBrand(HttpServletRequest request, HttpServletResponse response, String id) throws ServletException, IOException {
+
+        String name = request.getParameter("_name");
+        String image = request.getParameter("_logo");
+        String email =  request.getParameter("_email");
+
+        Brand brand = new Brand(name,email,image);
+
+
+        try {
+            Connection conn = MyUtils.getStoredConnection(request);
+            DBBrandUtil.UpdateBrandByID(conn,brand,Integer.parseInt(id));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        new manage_brand().doGet(request,response);
+
+    }
     private void addBrand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String name = request.getParameter("brandName");
-        String image = request.getParameter("brandImage");
-        String email =  request.getParameter("brandEmail");
+        String name = request.getParameter("_name");
+        String image = request.getParameter("_logo");
+        String email =  request.getParameter("_email");
 
         Brand brand = new Brand(name,email,image);
 

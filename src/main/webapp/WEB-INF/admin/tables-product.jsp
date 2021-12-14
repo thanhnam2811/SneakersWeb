@@ -132,18 +132,36 @@
 
                                             <!-- Action -->
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <a href="# " class="btn btn-info btn-icon-split btn-sm ">
+                                                <a href="# " class="btn btn-info btn-icon-split btn-sm "
+                                                   onclick="
+                                                           document.getElementById('_formTitle').textContent = 'EDIT PRODUCT: ID = ${o.id}';
+                                                           document.getElementById('_id').value = ${o.id};
+                                                           document.getElementById('_idBrand').value = ${o.idBrand};
+                                                           document.getElementById('_name').value = 'Loi';
+                                                           document.getElementById('_image').value = '${o.image}';
+                                                           <%--document.getElementById('_describe').value = '${o.describe}';--%>
+                                                           document.getElementById('_quantity').value = '${o.quantity}';
+                                                           document.getElementById('_cost').value = '${o.cost}';
+                                                           document.getElementById('_saleDate').value = '${o.saleDate}';
+                                                           ">
                                                             <span class="icon text-white-50 ">
                                                             <i class="fas fa-info-circle "></i>
                                                         </span>
                                                     <span class="text ">Edit</span>
                                                 </a>
-                                                <a href="# " class="btn btn-danger btn-icon-split btn-sm ">
-                                                            <span class="icon text-white-50 ">
+<%--                                                <a href="# " class="btn btn-danger btn-icon-split btn-sm ">--%>
+<%--                                                            <span class="icon text-white-50 ">--%>
+<%--                                                            <i class="fas fa-trash "></i>--%>
+<%--                                                        </span>--%>
+<%--                                                    <span class="text ">Delete</span>--%>
+<%--                                                </a>--%>
+                                                <form action="manage-product?type=delete&_id=${o.id}" method="post">
+                                                    <button class="btn btn-danger btn-icon-split btn-sm" style="width: 100px;" type="submit">
+                                                    <span class="icon text-white-50 ">
                                                             <i class="fas fa-trash "></i>
                                                         </span>
-                                                    <span class="text ">Delete</span>
-                                                </a>
+                                                        <span class="text ">Delete</span></button>
+                                                </form>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -156,17 +174,17 @@
                     <div class="col-lg-7 col-xl-4">
                         <div class="shadow card">
                             <div class="py-3 text-center">
-                                <h3 class="m-0 font-weight-bold text-primary">Create new Product</h3>
+                                <h3 class="m-0 font-weight-bold text-primary" id="_formTitle">Create new Product</h3>
                             </div>
-                            <form class="user px-3">
+                            <form class="user px-3" action="manage-product" method="post">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control" id="_id" name="_id" placeholder="ID">
+                                        <input type="text" class="form-control" id="_id" name="_id" placeholder="ID" readonly>
                                     </div>
                                     <div class="col-sm-6">
                                         <select class="select2 form-control" id="_idBrand" name="_idBrand">
-                                            <option value="1">Nike</option>
-                                            <option value="2">Adidas</option>
+                                            <option value="1">Adidas</option>
+                                            <option value="2">Nike</option>
                                         </select>
                                     </div>
                                 </div>
@@ -188,7 +206,7 @@
                                                placeholder="Quantity">
                                     </div>
                                     <div class="col-sm-8">
-                                        <input type="number" class="form-control" id="_cost" name="=_cost"
+                                        <input type="number" class="form-control" id="_cost" name="_cost"
                                                placeholder="Cost">
                                     </div>
                                 </div>
@@ -205,7 +223,9 @@
                                         </button>
                                     </div>
                                     <div class="col-sm-6">
-                                        <button type="reset" class="btn btn-secondary btn-block">
+                                        <button type="reset" class="btn btn-secondary btn-block"
+                                                onclick="
+                                                        document.getElementById('_formTitle').textContent = 'Create new Product';">
                                             Reset
                                         </button>
                                     </div>
@@ -236,7 +256,21 @@
 
 </div>
 <!-- End of Page Wrapper -->
+<script type="text/javascript">
+    function XuLyChuoi(chuoi)
+    {
+        var the_char = "";
+        for(var i = 0; chuoi.length; i++)
+        {
+            if(chuoi.charAt(i) == "'"){
+                the_char = the_char + "\\"
+            }
+            the_char = the_char + chuoi.charAt(i);
+        }
+        return the_char;
 
+    }
+</script>
 <!-- Bootstrap core JavaScript-->
 <script src="admin/vendor/jquery/jquery.min.js"></script>
 <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

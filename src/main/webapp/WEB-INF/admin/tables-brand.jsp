@@ -117,28 +117,34 @@
 
                                             <!-- Action -->
                                             <td style="text-align: center; vertical-align: middle;">
-<%--                                                <a href="# " class="btn btn-info btn-icon-split btn-sm ">--%>
-<%--                                                            <span class="icon text-white-50 ">--%>
-<%--                                                            <i class="fas fa-info-circle "></i>--%>
-<%--                                                        </span>--%>
-<%--                                                    <span class="text ">Edit</span>--%>
-<%--                                                </a>--%>
+                                                <a href="# " class="btn btn-info btn-icon-split btn-sm "
+                                                   onclick="
+                                                           document.getElementById('_formTitle').textContent = 'EDIT BRAND: ID = ${o.id}';
+                                                           document.getElementById('_id').value = '${o.id}';
+                                                           document.getElementById('_name').value = '${o.name}';
+                                                           document.getElementById('_logo').value = '${o.logo}';
+                                                           document.getElementById('_email').value = '${o.email}';">
+                                                            <span class="icon text-white-50 ">
+                                                            <i class="fas fa-info-circle "></i>
+                                                        </span>
+                                                    <span class="text ">Edit</span>
+                                                </a>
 <%--                                                <a href="# " class="btn btn-danger btn-icon-split btn-sm ">--%>
 <%--                                                            <span class="icon text-white-50 ">--%>
 <%--                                                            <i class="fas fa-trash "></i>--%>
 <%--                                                        </span>--%>
 <%--                                                    <span class="text ">Delete</span>--%>
 <%--                                                </a>--%>
-                                                <form action="manage-brand?type=edit&id=${o.id}" method="post">
-                                                    <button class="btn btn-info btn-icon-split btn-sm " style="width: 100px;" type="submit">
-                                                    <span class="icon text-white-50 ">
-                                                            <i class="fas fa-info-circle "></i>
-                                                        </span>
-                                                        <span class="text ">Edit</span>
-                                                    </button>
-                                                </form>
+<%--                                                <form action="manage-brand?type=edit&id=${o.id}" method="post">--%>
+<%--                                                    <button class="btn btn-info btn-icon-split btn-sm " style="width: 100px;" type="submit">--%>
+<%--                                                    <span class="icon text-white-50 ">--%>
+<%--                                                            <i class="fas fa-info-circle "></i>--%>
+<%--                                                        </span>--%>
+<%--                                                        <span class="text ">Edit</span>--%>
+<%--                                                    </button>--%>
+<%--                                                </form>--%>
 
-                                                <form action="manage-brand?type=delete&id=${o.id}" method="post">
+                                                <form action="manage-brand?type=delete&_id=${o.id}" method="post">
                                                     <button class="btn btn-danger btn-icon-split btn-sm" style="width: 100px;" type="submit">
                                                     <span class="icon text-white-50 ">
                                                             <i class="fas fa-trash "></i>
@@ -157,9 +163,9 @@
                     <div class="col-lg-7 col-xl-4">
                         <div class="shadow card">
                             <div class="py-3 text-center">
-                                <h3 class="m-0 font-weight-bold text-primary">Create new Brand</h3>
+                                <h3 class="m-0 font-weight-bold text-primary" id="_formTitle">Create new Brand</h3>
                             </div>
-                            <form class="user px-3">
+                            <form class="user px-3" action="manage-brand" method="post">
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="_id" name="_id" placeholder="ID" readonly>
                                 </div>
@@ -180,7 +186,8 @@
                                         </button>
                                     </div>
                                     <div class="col-sm-6">
-                                        <button type="reset" class="btn btn-secondary btn-block">
+                                        <button type="reset" class="btn btn-secondary btn-block"  onclick="
+                                                document.getElementById('_formTitle').textContent = 'Create new Brand';">
                                             Reset
                                         </button>
                                     </div>

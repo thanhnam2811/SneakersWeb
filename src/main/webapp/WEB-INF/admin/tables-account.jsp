@@ -101,7 +101,7 @@
 
                                         <!-- Avatar -->
                                         <td>
-                                            <img src="${o.avatar == null ? "img/avatar/avatar.png" : o.avatar}" style="width: 125px; height: 150px;" />
+                                            <img src="${o.avatar}" style="width: 125px; height: 150px;" />
                                         </td>
 
                                         <!-- Username -->

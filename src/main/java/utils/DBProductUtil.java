@@ -1,5 +1,6 @@
 package utils;
 
+import beans.Brand;
 import beans.Product;
 import conn.ConnectionUtils;
 
@@ -136,6 +137,46 @@ public class DBProductUtil {
             p = new Product(id, idBrand, name, image, describe, quantity, cost, saleDate);
         }
         return p;
+    }
+    //Insert new Product
+    public static void insertProduct(Connection conn, Product product) throws SQLException {
+        PreparedStatement pstm = conn.prepareCall("insert into Product(idBrand,name, image, describe, quantity, cost,saleDate) " +
+                "values(?, ?, ?, ?, ?, ?, ?)");
+        pstm.setInt(1,product.getIdBrand());
+        pstm.setString(2,product.getName());
+        pstm.setString(3,product.getImage());
+        pstm.setString(4,product.getDescribe());
+        pstm.setInt(5,product.getQuantity());
+        pstm.setDouble(6,product.getCost());
+        pstm.setDate(7,product.getSaleDate());
+
+        pstm.execute();
+
+    }
+    //Delete Product by ID
+    public static void DeleteProductByID(Connection conn,int idProduct) throws SQLException {
+        String sql = "DELETE FROM Product Where id = ?";
+
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1, idProduct);
+        pstm.executeUpdate();
+    }
+    //Update Product by ID
+    public static void UpdateProductByID(Connection conn,Product product,int idProduct) throws SQLException {
+        String sql = "UPDATE  Product " +
+                "SET idBrand = ?,name = ?, image = ?, describe = ?, quantity = ?, cost = ?,saleDate = ?" +
+                "  Where id = ?";
+
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1,product.getIdBrand());
+        pstm.setString(2,product.getName());
+        pstm.setString(3,product.getImage());
+        pstm.setString(4,product.getDescribe());
+        pstm.setInt(5,product.getQuantity());
+        pstm.setDouble(6,product.getCost());
+        pstm.setDate(7,product.getSaleDate());
+        pstm.setInt(8, idProduct);
+        pstm.executeUpdate();
     }
 /*
     // Get top 9 lastest purchased product

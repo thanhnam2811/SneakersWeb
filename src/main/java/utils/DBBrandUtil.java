@@ -56,6 +56,19 @@ public class DBBrandUtil {
         pstm.setInt(1, IDBrand);
         pstm.executeUpdate();
     }
+    //Update Brand by ID
+    public static void UpdateBrandByID(Connection conn,Brand brand,int IDBrand) throws SQLException {
+        String sql = "UPDATE  Brand " +
+                "SET name = ? ,email = ?, logo =?" +
+                "  Where id = ?";
+
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, brand.getName());
+        pstm.setString(2, brand.getEmail());
+        pstm.setString(3, brand.getLogo());
+        pstm.setInt(4, IDBrand);
+        pstm.executeUpdate();
+    }
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Connection conn = ConnectionUtils.getConnection();
         List<Brand> listB = getAllBrand(conn);
