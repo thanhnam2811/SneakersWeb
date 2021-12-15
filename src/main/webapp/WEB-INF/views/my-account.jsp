@@ -143,7 +143,7 @@
 
                                 <ul class="list list_2">
                                     <li><a href="#">Total <span><fmt:formatNumber type="number"
-                                                                                  maxFractionDigits="0" value="${c.cost}"/>vnđ</span></span></a></li>
+                                                                                  maxFractionDigits="0" value="${c.cost}"/>vnđ</span></a></li>
                                     <li><a href="#">Purcharse Date <span>${c.purchaseDate}</span></a></li>
                                 </ul>
                             </div>
