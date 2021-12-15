@@ -137,9 +137,9 @@
                                                            document.getElementById('_formTitle').textContent = 'EDIT PRODUCT: ID = ${o.id}';
                                                            document.getElementById('_id').value = ${o.id};
                                                            document.getElementById('_idBrand').value = ${o.idBrand};
-                                                           document.getElementById('_name').value = 'Loi';
+                                                           document.getElementById('_name').value = '${o.name}';
                                                            document.getElementById('_image').value = '${o.image}';
-                                                           <%--document.getElementById('_describe').value = '${o.describe}';--%>
+                                                           document.getElementById('_describe').value = '${o.describe}';
                                                            document.getElementById('_quantity').value = '${o.quantity}';
                                                            document.getElementById('_cost').value = '${o.cost}';
                                                            document.getElementById('_saleDate').value = '${o.saleDate}';
@@ -174,7 +174,7 @@
                     <div class="col-lg-7 col-xl-4">
                         <div class="shadow card">
                             <div class="py-3 text-center">
-                                <h3 class="m-0 font-weight-bold text-primary" id="_formTitle">Create new Product</h3>
+                                <h3 class="m-0 font-weight-bold text-primary" id="_formTitle">CREATE NEW PRODUCT</h3>
                             </div>
                             <form class="user px-3" action="manage-product" method="post">
                                 <div class="form-group row">
@@ -197,7 +197,7 @@
                                 </div>
                                 <div class="form-group">
                                     <!-- <input type="text" class="form-control form-control-user" id="_describe" placeholder="Describe"> -->
-                                    <textarea class="form-control" id="_describe" name="_describe"
+                                    <textarea class="form-control" id="_describe" name="_describe" style="text-align: justify-all"
                                               placeholder="Describe"></textarea>
                                 </div>
                                 <div class="form-group row">
@@ -225,7 +225,7 @@
                                     <div class="col-sm-6">
                                         <button type="reset" class="btn btn-secondary btn-block"
                                                 onclick="
-                                                        document.getElementById('_formTitle').textContent = 'Create new Product';">
+                                                        document.getElementById('_formTitle').textContent = 'CREATE NEW PRODUCT';">
                                             Reset
                                         </button>
                                     </div>

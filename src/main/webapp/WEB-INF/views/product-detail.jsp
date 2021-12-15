@@ -99,7 +99,7 @@
                             <span>Brand</span>: ${brandName}</a></li>
                         <li><a><span>Available</span> : ${product.quantity}</a></li>
                     </ul>
-                    <p>${product.describe}</p>
+                    <p style="text-align: justify-all">${product.describe}</p>
                     <form action="cart" method="get">
                         <input type="hidden" name="idProduct" value="${product.id}">
                         <div class="product_count">
