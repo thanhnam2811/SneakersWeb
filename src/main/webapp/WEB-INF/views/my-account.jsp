@@ -122,7 +122,7 @@
             <%--               Order--%>
                 <div class="col-lg-8 col-md-8 hide" id="myOrders">
                     <c:forEach items="${requestScope.listOrder}" var="c">
-                        <form>
+                        <form class=" py-1">
                             <div class="order_box">
                                 <h2>Your Order</h2>
 
