@@ -93,7 +93,14 @@
                                    style="width: 150px;"
                                    onclick="
                                         var myOrders = document.getElementById('myOrders');
-                                        myOrders.style.display = 'block';
+
+                                        if(myOrders.style.display == 'block')
+                                            {
+                                                myOrders.style.display = 'none';
+                                            }
+                                        else{
+                                            myOrders.style.display = 'block'
+                                        }
                                         ">
                                     My Orders
                                 </a>
