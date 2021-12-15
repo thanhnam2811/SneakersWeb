@@ -1,10 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: thanh
-  Date: 22/10/2021
-  Time: 3:55 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%-- Created by IntelliJ IDEA. User: thanh Date: 22/10/2021 Time: 3:55 PM To change this template use File | Settings |
+    File Templates. --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="vi" class="no-js">
@@ -40,7 +35,7 @@
 
 <body>
 <!-- Start Header Area -->
-<jsp:include page="_header.jsp"/>
+<jsp:include page="_header.jsp" />
 <!-- End Header Area -->
 
 <!-- Start Banner Area -->
@@ -50,7 +45,8 @@
             <div class="col-first">
                 <h1>My Account Page</h1>
                 <nav class="d-flex align-items-center">
-                    <a href="${pageContext.request.contextPath}/home">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="${pageContext.request.contextPath}/home">Home<span
+                            class="lnr lnr-arrow-right"></span></a>
                     <a href="${pageContext.request.contextPath}/my-account">My Account</a>
                 </nav>
             </div>
@@ -78,15 +74,25 @@
                                 <li><a>Date of Birth: <span>${user.dateOfBirth}</span></a></li>
                             </ul>
                             <div class="d-flex" style="padding-top: 20px">
-                                <a href="${pageContext.request.contextPath}/edit-account" class="primary-btn"
+                                <a href="${pageContext.request.contextPath}/edit-account" class="primary-btn rounded"
                                    style="width: 150px;">
                                     Edit
                                 </a>
                             </div>
                             <div class="d-flex" style="padding-top: 20px">
-                                <a href="${pageContext.request.contextPath}/logout" class="primary-btn"
+                                <a href="${pageContext.request.contextPath}/logout" class="primary-btn rounded"
                                    style="width: 150px;">
                                     Log out
+                                </a>
+                            </div>
+                            <div class="d-flex" style="padding-top: 20px">
+                                <a href="#" class="primary-btn rounded"
+                                   style="width: 150px;"
+                                   onclick="
+                                        var myOrders = document.getElementById('myOrders');
+                                        myOrders.style.display = 'block';
+                                        ">
+                                    My Orders
                                 </a>
                             </div>
                         </div>
@@ -98,15 +104,72 @@
                     </h3>
                     <div class="single-gallery-image" style="background: url(${user.avatar}); height: 255px"></div>
                 </div>
+                <style>
+                    .hide{
+                        display: none;
+                    }
+                </style>
+                <div class="col-lg-8 col-md-8 hide" id="myOrders">
+                    <form>
+                        <div class="order_box">
+                            <h2>Your Order</h2>
+                            <ul class="list">
+                                <li><a href="#">Product <span>Total</span></a></li>
+                                <li><a href="#">Fresh Blackberr
+                                    <span class="middle">x 02</span>
+                                    <span class="last">$720.00</span>
+                                </a></li>
+                                <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span
+                                        class="last">$720.00</span></a></li>
+                                <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span
+                                        class="last">$720.00</span></a></li>
+                            </ul>
+                            <ul class="list list_2">
+                                <li><a href="#">Total <span>$2210.00</span></a></li>
+                                <li><a href="#">Purcharse Date <span>dd/MM/yyyy</span></a></li>
+                            </ul>
+                        </div>
+                    </form>
+                    <form>
+                        <div class="order_box">
+                            <h2>Your Order</h2>
+                            <ul class="list">
+                                <li><a href="#">Product <span>Total</span></a></li>
+                                <li><a href="#">Fresh Blackberr
+                                    <span class="middle">x 02</span>
+                                    <span class="last">$720.00</span>
+                                </a></li>
+                                <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span
+                                        class="last">$720.00</span></a></li>
+                                <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span
+                                        class="last">$720.00</span></a></li>
+                            </ul>
+                            <ul class="list list_2">
+                                <li><a href="#">Total <span>$2210.00</span></a></li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
             </div>
+
         </div>
     </div>
 </div>
 <!-- End Align Area -->
 
+<!--================Checkout Area =================-->
+<section class="checkout_area section_gap">
+    <div class="container">
+        <div class="billing_details">
+            <div class="row">
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Checkout Area =================-->
 
 <!-- start footer Area -->
-<jsp:include page="_footer.jsp"/>
+<jsp:include page="_footer.jsp" />
 <!-- End footer Area -->
 
 
