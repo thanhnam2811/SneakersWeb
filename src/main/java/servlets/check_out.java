@@ -50,6 +50,6 @@ public class check_out extends HttpServlet {
             e.printStackTrace();
         }
 
-        response.sendRedirect(request.getContextPath() + "/home");
+        response.sendRedirect(request.getContextPath() + "/my-account");
     }
 }
