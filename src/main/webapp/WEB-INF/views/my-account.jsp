@@ -1,6 +1,9 @@
 <%-- Created by IntelliJ IDEA. User: thanh Date: 22/10/2021 Time: 3:55 PM To change this template use File | Settings |
     File Templates. --%>
+<%@ page import="beans.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="vi" class="no-js">
 
@@ -109,46 +112,55 @@
                         display: none;
                     }
                 </style>
+            <%--               Order--%>
                 <div class="col-lg-8 col-md-8 hide" id="myOrders">
-                    <form>
-                        <div class="order_box">
-                            <h2>Your Order</h2>
-                            <ul class="list">
-                                <li><a href="#">Product <span>Total</span></a></li>
-                                <li><a href="#">Fresh Blackberr
-                                    <span class="middle">x 02</span>
-                                    <span class="last">$720.00</span>
-                                </a></li>
-                                <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span
-                                        class="last">$720.00</span></a></li>
-                                <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span
-                                        class="last">$720.00</span></a></li>
-                            </ul>
-                            <ul class="list list_2">
-                                <li><a href="#">Total <span>$2210.00</span></a></li>
-                                <li><a href="#">Purcharse Date <span>dd/MM/yyyy</span></a></li>
-                            </ul>
-                        </div>
-                    </form>
-                    <form>
-                        <div class="order_box">
-                            <h2>Your Order</h2>
-                            <ul class="list">
-                                <li><a href="#">Product <span>Total</span></a></li>
-                                <li><a href="#">Fresh Blackberr
-                                    <span class="middle">x 02</span>
-                                    <span class="last">$720.00</span>
-                                </a></li>
-                                <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span
-                                        class="last">$720.00</span></a></li>
-                                <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span
-                                        class="last">$720.00</span></a></li>
-                            </ul>
-                            <ul class="list list_2">
-                                <li><a href="#">Total <span>$2210.00</span></a></li>
-                            </ul>
-                        </div>
-                    </form>
+                    <c:forEach items="${requestScope.listOrder}" var="c">
+                        <form>
+                            <div class="order_box">
+                                <h2>Your Order</h2>
+
+                                <ul class="list">
+                                    <li><a href="#">Product <span>Total</span></a></li>
+                                    <c:forEach items="${c.getListDetailByID(conn)}" var="o">
+                                    <li><a href="product-detail?id=${o.idProduct}">${o.getNameProduct(conn)}
+                                        <span class="middle">x ${o.quantity}</span>
+                                        <span class="last"><fmt:formatNumber type="number"
+                                                                             maxFractionDigits="0" value="${o.cost}"/>vnđ</span>
+                                    </a></li>
+                                    </c:forEach>
+<%--                                    <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span--%>
+<%--                                            class="last">$720.00</span></a></li>--%>
+<%--                                    <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span--%>
+<%--                                            class="last">$720.00</span></a></li>--%>
+                                </ul>
+
+                                <ul class="list list_2">
+                                    <li><a href="#">Total <span><fmt:formatNumber type="number"
+                                                                                  maxFractionDigits="0" value="${c.cost}"/>vnđ</span></span></a></li>
+                                    <li><a href="#">Purcharse Date <span>${c.purchaseDate}</span></a></li>
+                                </ul>
+                            </div>
+                        </form>
+                    </c:forEach>
+<%--                    <form>--%>
+<%--                        <div class="order_box">--%>
+<%--                            <h2>Your Order</h2>--%>
+<%--                            <ul class="list">--%>
+<%--                                <li><a href="#">Product <span>Total</span></a></li>--%>
+<%--                                <li><a href="#">Fresh Blackberr--%>
+<%--                                    <span class="middle">x 02</span>--%>
+<%--                                    <span class="last">$720.00</span>--%>
+<%--                                </a></li>--%>
+<%--                                <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span--%>
+<%--                                        class="last">$720.00</span></a></li>--%>
+<%--                                <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span--%>
+<%--                                        class="last">$720.00</span></a></li>--%>
+<%--                            </ul>--%>
+<%--                            <ul class="list list_2">--%>
+<%--                                <li><a href="#">Total <span>$2210.00</span></a></li>--%>
+<%--                            </ul>--%>
+<%--                        </div>--%>
+<%--                    </form>--%>
                 </div>
             </div>
 

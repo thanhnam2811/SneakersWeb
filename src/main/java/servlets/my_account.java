@@ -1,6 +1,8 @@
 package servlets;
 
 import beans.Account;
+import beans.Order;
+import utils.DBOrderUtil;
 import utils.MyUtils;
 
 import javax.servlet.ServletException;
@@ -10,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(name = "my-account", value = "/my-account")
 public class my_account extends HttpServlet {
@@ -31,6 +36,16 @@ public class my_account extends HttpServlet {
         if (loginedUser.isAdmin())
             response.sendRedirect(request.getContextPath() + "/admin-profile");
         else {
+            Connection conn = MyUtils.getStoredConnection(request);
+            List<Order> listOrder = null;
+
+            try {
+                listOrder = DBOrderUtil.getOrderByUsername(conn,loginedUser.getUsername());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            request.setAttribute("conn", conn);
+            request.setAttribute("listOrder", listOrder);
             // Page name
             request.setAttribute("pageName", "my-account");
 

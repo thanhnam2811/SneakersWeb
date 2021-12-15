@@ -1,9 +1,13 @@
 package utils;
 
 import beans.Account;
+import beans.Brand;
+import beans.Order;
 import conn.ConnectionUtils;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBOrderUtil {
     // Get annual total revenue
@@ -72,7 +76,33 @@ public class DBOrderUtil {
         }
         return -1;
     }
+    //Get order By username
+    public static List<Order> getOrderByUsername(Connection conn, String user) throws SQLException {
+        List<Order> listB = new ArrayList<>();
 
+        PreparedStatement pstm = conn.prepareCall("Select * \n" +
+                "From [Order]\n" +
+                "Where username = ? \n" +
+                "Order by id DESC");
+
+        pstm.setString(1, user);
+        ResultSet rs = pstm.executeQuery();
+
+
+        while (rs.next()) {
+            int id = rs.getInt(1);
+            String username = rs.getString(2);
+            Double cost = rs.getDouble(3);
+            Date purchaseDate = rs.getDate(4);
+            String address = rs.getString(5);
+            String phone = rs.getString(6);
+            String fullname = rs.getString(7);
+
+            Order b = new Order(id, username,cost,purchaseDate,address,phone,fullname);
+            listB.add(b);
+        }
+        return listB;
+    }
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Connection conn = ConnectionUtils.getConnection();
         Account user = DBAccountUtil.findAccount(conn, "nam");

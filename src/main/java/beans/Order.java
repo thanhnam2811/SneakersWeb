@@ -1,6 +1,12 @@
 package beans;
 
+import utils.DBBrandUtil;
+import utils.DBOrderDetailUtil;
+
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.SQLException;
+import java.util.List;
 
 public class Order {
     private String username, address, fullName, phoneNumber;
@@ -11,7 +17,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(String username, String address, String fullName, String phoneNumber, int id, double cost, Date purchaseDate) {
+    public Order(int id,String username, double cost, Date purchaseDate, String address, String phoneNumber, String fullName) {
         this.username = username;
         this.address = address;
         this.fullName = fullName;
@@ -33,7 +39,10 @@ public class Order {
                 ", purchaseDate=" + purchaseDate +
                 '}';
     }
-
+    public List<OrderDetail> getListDetailByID(Connection conn) throws SQLException {
+        List<OrderDetail> listB = DBOrderDetailUtil.getorderDetailByidOrder(conn,this.id);
+        return listB;
+    }
     public String getUsername() {
         return username;
     }

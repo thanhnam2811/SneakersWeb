@@ -1,28 +1,42 @@
 package beans;
 
+import utils.DBBrandUtil;
+import utils.DBProductUtil;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+
 public class OrderDetail {
     private int id, idOrder, quantity;
-    private Product product;
+    private int idProduct;
     private double cost;
 
     public OrderDetail() {
     }
 
-    public OrderDetail(int id, int idOrder, int quantity, Product product, double cost) {
+    public OrderDetail(int id, int idOrder, int quantity, int idProduct, double cost) {
         this.id = id;
         this.idOrder = idOrder;
         this.quantity = quantity;
-        this.product = product;
+        this.idProduct = idProduct;
         this.cost = cost;
     }
-
+    public String getNameProduct(Connection conn) throws SQLException {
+        List<Product> listP = DBProductUtil.getAllProduct(conn);
+        for (Product p: listP ) {
+            if (p.getId() == idProduct)
+                return p.getName();
+        }
+        return "Unknown";
+    }
     @Override
     public String toString() {
         return "OrderDetail{" +
                 "id=" + id +
                 ", idOrder=" + idOrder +
                 ", quantity=" + quantity +
-                ", product=" + product +
+                ", product=" + idProduct +
                 ", cost=" + cost +
                 '}';
     }
@@ -51,12 +65,12 @@ public class OrderDetail {
         this.quantity = quantity;
     }
 
-    public Product getProduct() {
-        return product;
+    public int getIdProduct() {
+        return idProduct;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
     }
 
     public double getCost() {
