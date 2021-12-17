@@ -265,12 +265,13 @@
 
                                             <!-- Action -->
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <a href="# " class="btn btn-danger btn-icon-split btn-sm ">
-                                                            <span class="icon text-white-50 ">
-                                                                <i class="fas fa-trash "></i>
-                                                            </span>
-                                                    <span class="text ">Delete</span>
-                                                </a>
+                                                <form action="manage-comment?id=${c.id}" method="post">
+                                                    <button class="btn btn-danger btn-icon-split btn-sm" style="width: 100px;" type="submit">
+                                                    <span class="icon text-white-50 ">
+                                                            <i class="fas fa-trash "></i>
+                                                        </span>
+                                                        <span class="text ">Delete</span></button>
+                                                </form>
                                             </td>
                                         </tr>
                                         </c:forEach>
