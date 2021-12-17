@@ -141,7 +141,8 @@
                                                            document.getElementById('_image').value = '${o.image}';
                                                            document.getElementById('_describe').value = '${o.describe}';
                                                            document.getElementById('_quantity').value = '${o.quantity}';
-                                                           document.getElementById('_cost').value = '${o.cost}';
+                                                           document.getElementById('_cost').value = '<fmt:formatNumber type="number"
+                                                                                                                       groupingUsed="false"   maxFractionDigits="0" value="${o.cost}"/>';
                                                            document.getElementById('_saleDate').value = '${o.saleDate}';
                                                            ">
                                                             <span class="icon text-white-50 ">
@@ -206,7 +207,7 @@
                                                placeholder="Quantity">
                                     </div>
                                     <div class="col-sm-8">
-                                        <input type="number" class="form-control" id="_cost" name="_cost"
+                                        <input type="text" class="form-control" id="_cost" name="_cost"
                                                placeholder="Cost">
                                     </div>
                                 </div>
