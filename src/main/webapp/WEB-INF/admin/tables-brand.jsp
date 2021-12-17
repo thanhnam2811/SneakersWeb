@@ -163,7 +163,7 @@
                     <div class="col-lg-7 col-xl-4">
                         <div class="shadow card">
                             <div class="py-3 text-center">
-                                <h3 class="m-0 font-weight-bold text-primary" id="_formTitle">Create new Brand</h3>
+                                <h3 class="m-0 font-weight-bold text-primary" id="_formTitle">CREATE NEW BRAND</h3>
                             </div>
                             <form class="user px-3" action="manage-brand" method="post">
                                 <div class="form-group">
@@ -187,7 +187,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <button type="reset" class="btn btn-secondary btn-block"  onclick="
-                                                document.getElementById('_formTitle').textContent = 'Create new Brand';">
+                                                document.getElementById('_formTitle').textContent = 'CREATE NEW BRAND';">
                                             Reset
                                         </button>
                                     </div>

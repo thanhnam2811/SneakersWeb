@@ -84,7 +84,7 @@ public class DBCommentUtil {
     // Get all comment
     public static List<Comment> getAllComment(Connection conn) throws SQLException {
         List<Comment> listC = new ArrayList<Comment>();
-        PreparedStatement pstm = conn.prepareCall("select * from Comment");
+        PreparedStatement pstm = conn.prepareCall("select * from Comment Order by id DESC");
 
         ResultSet rs = pstm.executeQuery();
 
