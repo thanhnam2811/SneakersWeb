@@ -204,10 +204,10 @@
                                 </div>
                                 <div class="mt-4 text-center small">
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Nike
+                                            <i class="fas fa-circle text-primary"></i>Adidas
                                         </span>
                                     <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Adidas
+                                            <i class="fas fa-circle text-success"></i> Nike
                                         </span>
                                 </div>
                             </div>

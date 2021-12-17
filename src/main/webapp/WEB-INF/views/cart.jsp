@@ -30,7 +30,7 @@
     <!-- meta character set -->
     <meta charset="UTF-8">
     <!-- Site Title -->
-    <title>Karma Shop</title>
+    `<title>NT Sneaker Shop</title>
 
     <!--
             CSS
